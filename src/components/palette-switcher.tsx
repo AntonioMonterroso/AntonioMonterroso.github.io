@@ -1,5 +1,6 @@
 "use client";
 
+import type { MouseEvent } from "react";
 import { cn } from "@/lib/utils";
 import { palettes } from "@/lib/site";
 import { usePrefs, useT } from "@/components/prefs";
@@ -7,6 +8,12 @@ import { usePrefs, useT } from "@/components/prefs";
 export function PaletteSwitcher({ size = "sm", className }: { size?: "sm" | "lg"; className?: string }) {
   const { palette, setPalette } = usePrefs();
   const t = useT();
+  // El círculo nace en el centro de la muestra de color, se haya usado mouse, dedo o teclado
+  const choose = (id: (typeof palettes)[number]["id"]) => (e: MouseEvent<HTMLButtonElement>) => {
+    const swatch = e.currentTarget.querySelector(".swatch") ?? e.currentTarget;
+    const r = swatch.getBoundingClientRect();
+    setPalette(id, { x: r.left + r.width / 2, y: r.top + r.height / 2 });
+  };
   return (
     <div role="group" aria-label={t("Colores de la página", "Page colors")} className={cn("flex items-center", className)}>
       {palettes.map((p) =>
@@ -17,7 +24,7 @@ export function PaletteSwitcher({ size = "sm", className }: { size?: "sm" | "lg"
             className="swatch-hit"
             aria-pressed={palette === p.id}
             aria-label={t(`Paleta ${p.es}`, `${p.en} palette`)}
-            onClick={() => setPalette(p.id)}
+            onClick={choose(p.id)}
           >
             <span
               className="swatch"
@@ -30,7 +37,7 @@ export function PaletteSwitcher({ size = "sm", className }: { size?: "sm" | "lg"
             key={p.id}
             type="button"
             aria-pressed={palette === p.id}
-            onClick={() => setPalette(p.id)}
+            onClick={choose(p.id)}
             className="group flex min-h-11 items-center gap-3 rounded-full border border-[var(--line)] py-2 pr-5 pl-2 text-[length:var(--step--1)] transition-[border-color,transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97] aria-pressed:border-[var(--brass)]"
           >
             <span

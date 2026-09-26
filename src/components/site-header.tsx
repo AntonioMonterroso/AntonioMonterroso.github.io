@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger, SheetClose } from "@/com
 import { LangToggle, PaletteSwitcher } from "@/components/palette-switcher";
 import { useT } from "@/components/prefs";
 import { T } from "@/components/t";
+import { QuoteLink } from "@/components/quote-link";
 
 const links = [
   { href: "#servicios", es: "Servicios", en: "Services" },
@@ -32,7 +33,28 @@ export function Logo() {
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState<string | null>(null);
   const t = useT();
+
+  // Marca en el menú la sección que está en el centro de la pantalla
+  useEffect(() => {
+    const ids = [...links.map((l) => l.href.slice(1)), "contacto"];
+    const sections = ids.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => !!el);
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) if (e.isIntersecting) setActive(e.target.id);
+      },
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    sections.forEach((el) => io.observe(el));
+    const hero = document.getElementById("inicio");
+    const heroIo = new IntersectionObserver(([e]) => e.isIntersecting && setActive(null), { rootMargin: "-45% 0px -50% 0px" });
+    if (hero) heroIo.observe(hero);
+    return () => {
+      io.disconnect();
+      heroIo.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -49,7 +71,7 @@ export function SiteHeader() {
           <ul className="flex items-center gap-7">
             {links.map((l) => (
               <li key={l.href}>
-                <a className="nav-link" href={l.href}>
+                <a className="nav-link" href={l.href} aria-current={active === l.href.slice(1) ? "true" : undefined}>
                   <T es={l.es} en={l.en} />
                 </a>
               </li>
@@ -62,9 +84,9 @@ export function SiteHeader() {
             <span aria-hidden="true" className="mx-1 h-5 w-px bg-[var(--line-strong)]" />
             <LangToggle />
           </div>
-          <a href="#contacto" className="btn btn-solid ml-2 hidden !min-h-10 !px-5 sm:inline-flex">
+          <QuoteLink className="btn btn-solid ml-2 hidden !min-h-10 !px-5 sm:inline-flex">
             <T es="Cotizar" en="Get a quote" />
-          </a>
+          </QuoteLink>
           <Sheet>
             <SheetTrigger asChild>
               <button
@@ -79,8 +101,8 @@ export function SiteHeader() {
               <SheetTitle className="sr-only">{t("Menú", "Menu")}</SheetTitle>
               <nav aria-label={t("Móvil", "Mobile")} className="mt-12">
                 <ul className="flex flex-col">
-                  {[...links, { href: "#contacto", es: "Contacto", en: "Contact" }].map((l) => (
-                    <li key={l.href}>
+                  {[...links, { href: "#contacto", es: "Contacto", en: "Contact" }].map((l, i) => (
+                    <li key={l.href} className="sheet-item" style={{ ["--i" as string]: i }}>
                       <SheetClose asChild>
                         <a
                           href={l.href}

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { usePrefs, useT } from "@/components/prefs";
 import { projects } from "@/lib/site";
+import { Segmented } from "@/components/segmented";
 
 type Cat = "todos" | "web" | "panel" | "erp" | "esp";
 
@@ -43,12 +44,16 @@ export function Work() {
           </p>
         </div>
 
-        <div role="group" aria-label={t("Filtrar por tipo", "Filter by type")} className="mt-12 flex flex-wrap gap-2" data-reveal>
-          {filters.map((f) => (
-            <button key={f.id} type="button" className="filter-btn" aria-pressed={cat === f.id} onClick={() => setCat(f.id)}>
-              {lang === "en" ? f.en : f.es}
-            </button>
-          ))}
+        <div className="mt-12" data-reveal>
+          <Segmented
+            label={t("Filtrar por tipo", "Filter by type")}
+            options={filters.map((f) => ({ id: f.id, label: lang === "en" ? f.en : f.es }))}
+            value={cat}
+            onChange={setCat}
+            className="flex flex-wrap gap-2"
+            itemClassName="filter-btn"
+            activeClassName="filter-btn-on"
+          />
         </div>
 
         <ul className="mt-8">

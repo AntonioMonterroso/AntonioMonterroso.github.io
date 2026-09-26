@@ -2,12 +2,14 @@ import Image from "next/image";
 import { Check } from "lucide-react";
 import { T } from "@/components/t";
 import { escritorioResponsive } from "@/lib/images";
-import { planPrices } from "@/lib/site";
+import { planPrices, type ProjectType } from "@/lib/site";
+import { QuoteLink } from "@/components/quote-link";
 
 // Los precios se editan en src/lib/site.ts (planPrices).
 const plans = [
   {
     id: "presencia" as const,
+    quote: "web" as ProjectType,
     name: { es: "Presencia", en: "Presence" },
     goal: { es: "Para que te encuentren y te escriban.", en: "So people find you and get in touch." },
     items: [
@@ -19,6 +21,7 @@ const plans = [
   },
   {
     id: "operacion" as const,
+    quote: "panel" as ProjectType,
     name: { es: "Operación", en: "Operations" },
     goal: { es: "Para ordenar el día a día.", en: "To get the day-to-day in order." },
     items: [
@@ -31,6 +34,7 @@ const plans = [
   },
   {
     id: "empresa" as const,
+    quote: "erp" as ProjectType,
     name: { es: "Empresa", en: "Company" },
     goal: { es: "Para tener todo conectado.", en: "To have everything connected." },
     items: [
@@ -103,9 +107,9 @@ export function Plans() {
                     </>
                   )}
                 </p>
-                <a href="#contacto" className={`btn ${p.featured ? "btn-brass" : "btn-ghost"} !min-h-11 !px-4 text-[length:var(--step--1)]`}>
+                <QuoteLink type={p.quote} className={`btn ${p.featured ? "btn-brass" : "btn-ghost"} !min-h-11 !px-4 text-[length:var(--step--1)]`}>
                   <T es="Cotizar" en="Get a quote" />
-                </a>
+                </QuoteLink>
               </div>
             </article>
           ))}
