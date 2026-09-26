@@ -21,8 +21,10 @@ export function Logo() {
     <a href="#inicio" className="flex items-center gap-2.5" aria-label="Monterroso Dev Studio">
       <svg viewBox="0 0 64 64" className="size-8" aria-hidden="true">
         <rect width="64" height="64" rx="16" fill="var(--navy-2)" />
-        <path d="M14 46V20l18 17 18-17v26" fill="none" stroke="var(--snow)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="50" cy="48" r="3.5" fill="var(--brass)" />
+        <g fill="none" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M22 21 11 32l11 11M42 21l11 11-11 11" stroke="var(--snow)" />
+          <path d="M36 17 28 47" stroke="var(--brass)" />
+        </g>
       </svg>
       <span className="font-heading text-[length:var(--step-0)] leading-none font-medium tracking-tight">
         Monterroso <span className="text-[var(--mist)]">Dev Studio</span>
