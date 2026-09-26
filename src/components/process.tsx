@@ -58,7 +58,7 @@ export function Process() {
               />
             </p>
           </div>
-          <figure className="mt-10" data-reveal style={{ ["--d" as string]: "80ms" }}>
+          <figure className="mt-10">
             <div className="photo aspect-[3/2] shadow-[0_30px_60px_-30px_color-mix(in_oklab,var(--paper-ink)_45%,transparent)]">
               <Image
                 src={bocetoAcuarela.src}

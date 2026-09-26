@@ -921,28 +921,11 @@ html.js [data-reveal][data-visible] {
   opacity: 1;
   transform: none;
 }
-/* Las fotos se descubren de abajo hacia arriba y se asientan (800 ms, superficie de marketing) */
-html.js .photo[data-reveal],
-html.js [data-reveal] .photo {
+/* Las fotos no se animan: ya están en su lugar cuando llegas a ellas */
+html.js .photo[data-reveal] {
   opacity: 1;
   transform: none;
-  clip-path: inset(0 0 100% 0);
-  transition: clip-path 800ms var(--ease-in-out);
-  transition-delay: var(--d, 0ms);
-}
-html.js .photo[data-reveal] img,
-html.js [data-reveal] .photo img {
-  transform: scale(1.08);
-  transition: transform 800ms var(--ease-out);
-  transition-delay: var(--d, 0ms);
-}
-html.js .photo[data-reveal][data-visible],
-html.js [data-reveal][data-visible] .photo {
-  clip-path: inset(0 0 0 0);
-}
-html.js .photo[data-reveal][data-visible] img,
-html.js [data-reveal][data-visible] .photo img {
-  transform: none;
+  transition: none;
 }
 
 /* ─── WhatsApp flotante ─── */
@@ -1002,18 +985,6 @@ html.js [data-reveal][data-visible] .photo img {
   .fog-drift,
   .fog-drift-slow {
     animation: none;
-  }
-  html.js .photo[data-reveal],
-  html.js [data-reveal] .photo {
-    clip-path: none;
-    transition: opacity 400ms var(--ease-out);
-  }
-  html.js .photo[data-reveal] img,
-  html.js [data-reveal] .photo img {
-    transform: none;
-  }
-  html.js .photo[data-reveal]:not([data-visible]) {
-    opacity: 0;
   }
   .seg[data-ready="true"] > .seg-active {
     transition: clip-path 120ms linear;
