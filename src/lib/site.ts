@@ -83,7 +83,7 @@ export const projects: {
       es: "Productos únicos, varias vendedoras, cajas, gastos y comisiones que se calculan solas.",
       en: "One-of-a-kind products, several sellers, cash registers, expenses and commissions that calculate themselves.",
     },
-    demo: null,
+    demo: "https://antoniomonterroso.github.io/LaCabana/demo",
   },
   {
     cat: "panel",
