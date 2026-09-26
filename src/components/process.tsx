@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { T } from "@/components/t";
+import { Split } from "@/components/split";
 import { bocetoAcuarela } from "@/lib/images";
 
 const steps = [
@@ -46,12 +47,12 @@ export function Process() {
     <section id="proceso" className="section on-paper" aria-labelledby="proceso-title">
       <div className="shell grid gap-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-20">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <div data-reveal>
-            <p className="kicker"><T es="Cómo trabajamos" en="How we work" /></p>
-            <h2 id="proceso-title" className="display mt-5 text-[length:var(--step-4)]">
-              <T es="Todo empieza con un boceto a mano." en="Everything starts with a hand sketch." />
+          <div>
+            <p className="kicker" data-reveal><T es="Cómo trabajamos" en="How we work" /></p>
+            <h2 id="proceso-title" className="display mt-5 text-[length:var(--step-4)]" data-reveal="lines">
+              <T es={<Split text="Todo empieza con un boceto a mano." />} en={<Split text="Everything starts with a hand sketch." />} />
             </h2>
-            <p className="lead mt-6 max-w-[34rem]">
+            <p className="lead mt-6 max-w-[34rem]" data-reveal style={{ ["--d" as string]: "150ms" }}>
               <T
                 es="Antes de programar, dibujamos. Corregir un papel sale mucho más barato que corregir un sistema, y así ves tu proyecto desde el primer día."
                 en="Before we code, we draw. Fixing paper is far cheaper than fixing software, and you get to see your project from day one."

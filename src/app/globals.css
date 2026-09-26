@@ -340,7 +340,7 @@ html[lang="en"] .l-es {
   height: 1px;
   background: var(--brass);
   transform: scaleX(0);
-  transform-origin: left;
+  transform-origin: right;
   transition: transform 250ms var(--ease-out);
 }
 .nav-link[aria-current="true"] {
@@ -348,6 +348,7 @@ html[lang="en"] .l-es {
 }
 .nav-link[aria-current="true"]::after {
   transform: scaleX(1);
+  transform-origin: left;
 }
 @media (hover: hover) and (pointer: fine) {
   .nav-link:hover {
@@ -355,6 +356,7 @@ html[lang="en"] .l-es {
   }
   .nav-link:hover::after {
     transform: scaleX(1);
+    transform-origin: left;
   }
 }
 .swatch {
@@ -495,6 +497,19 @@ html[lang="en"] .l-es {
 }
 @keyframes fade-up {
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* Entrada de la ventana de código: pasa de desenfocada y un poco chica a nítida */
+.code-enter {
+  opacity: 0;
+  transform: scale(0.97);
+  transform-origin: bottom right;
+  filter: blur(4px);
+  animation: code-in 700ms var(--ease-out) forwards;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes code-in {
+  to { opacity: 1; transform: none; filter: none; }
 }
 
 /* Ventana de código (fija en el hero, con efecto de escritura) */
@@ -716,6 +731,28 @@ html[lang="en"] .l-es {
   width: 1px;
   background: var(--paper-line);
 }
+@supports (animation-timeline: view()) {
+  .step {
+    view-timeline-name: --step;
+  }
+  .step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 1.5rem;
+    top: 3rem;
+    bottom: 0.25rem;
+    width: 1px;
+    background: var(--paper-ink);
+    transform-origin: top;
+    animation: step-fill linear both;
+    animation-timeline: --step;
+    animation-range: cover 40% cover 65%;
+  }
+  @keyframes step-fill {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+  }
+}
 .step-num {
   display: grid;
   place-items: center;
@@ -792,7 +829,7 @@ html[lang="en"] .l-es {
   gap: 0.5rem 2rem;
   padding-block: 1.5rem;
   border-top: 1px solid var(--line);
-  transition: opacity 250ms var(--ease-out);
+  transition: opacity 200ms ease;
 }
 @media (min-width: 768px) {
   .work-row {
@@ -801,7 +838,7 @@ html[lang="en"] .l-es {
   }
 }
 .work-row[data-dim="true"] {
-  opacity: 0.22;
+  opacity: 0.25;
 }
 .paren {
   font-family: var(--font-display), sans-serif;
@@ -899,6 +936,18 @@ select.field-input {
   animation-duration: 220ms;
   animation-timing-function: var(--ease-out);
 }
+html[data-vt="lang"]::view-transition-old(root) {
+  animation: vt-out 220ms var(--ease-out) both;
+}
+html[data-vt="lang"]::view-transition-new(root) {
+  animation: vt-in 220ms var(--ease-out) both;
+}
+@keyframes vt-out {
+  to { opacity: 0; filter: blur(2px); }
+}
+@keyframes vt-in {
+  from { opacity: 0; filter: blur(2px); }
+}
 html[data-vt="reveal"]::view-transition-old(root),
 html[data-vt="reveal"]::view-transition-new(root) {
   animation: none;
@@ -911,16 +960,37 @@ html[data-vt="reveal"]::view-transition-new(root) {
 /* ─── Aparición al hacer scroll (solo con JS; sin JS todo se ve) ─── */
 html.js [data-reveal] {
   opacity: 0;
-  transform: translateY(18px);
-  transition:
-    opacity 700ms var(--ease-out),
-    transform 700ms var(--ease-out);
+  transition: opacity 400ms var(--ease-out);
   transition-delay: var(--d, 0ms);
 }
 html.js [data-reveal][data-visible] {
   opacity: 1;
   transform: none;
 }
+/* Títulos: cada renglón sube desde detrás de su propia máscara, 60 ms después del anterior */
+html.js [data-reveal="lines"] {
+  opacity: 1;
+  transition: none;
+}
+.w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+.w > span {
+  display: inline-block;
+}
+html.js [data-reveal="lines"] .w > span {
+  transform: translateY(110%);
+  transition: transform 700ms var(--ease-out);
+  transition-delay: calc(var(--l, 0) * 60ms + var(--d, 0ms));
+}
+html.js [data-reveal="lines"][data-visible] .w > span {
+  transform: none;
+}
+
 /* Las fotos no se animan: ya están en su lugar cuando llegas a ellas */
 html.js .photo[data-reveal] {
   opacity: 1;
@@ -981,6 +1051,26 @@ html.js .photo[data-reveal] {
   html.js [data-reveal] {
     transform: none;
     transition: opacity 400ms var(--ease-out);
+  }
+  html.js [data-reveal="lines"] {
+    opacity: 0;
+    transition: opacity 400ms var(--ease-out);
+  }
+  html.js [data-reveal="lines"][data-visible] {
+    opacity: 1;
+  }
+  html.js [data-reveal="lines"] .w > span {
+    transform: none;
+    transition: none;
+  }
+  .code-enter {
+    transform: none;
+    filter: none;
+    animation-name: fade-only;
+  }
+  .step:not(:last-child)::after {
+    animation: none;
+    transform: none;
   }
   .fog-drift,
   .fog-drift-slow {

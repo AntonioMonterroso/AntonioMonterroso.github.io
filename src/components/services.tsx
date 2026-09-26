@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { T } from "@/components/t";
+import { Split } from "@/components/split";
 import { sistemasIsometrico } from "@/lib/images";
 
 const services = [
@@ -65,12 +66,12 @@ export function Services() {
     <section id="servicios" className="section" aria-labelledby="servicios-title">
       <div className="shell">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-end">
-          <div data-reveal>
-            <p className="kicker"><T es="Qué hacemos" en="What we do" /></p>
-            <h2 id="servicios-title" className="display mt-5 text-[length:var(--step-4)]">
+          <div>
+            <p className="kicker" data-reveal><T es="Qué hacemos" en="What we do" /></p>
+            <h2 id="servicios-title" className="display mt-5 text-[length:var(--step-4)]" data-reveal="lines">
               <T
-                es="Una página web puede hacer mucho más que verse bien."
-                en="A website can do a lot more than look good."
+                es={<Split text="Una página web puede hacer mucho más que verse bien." />}
+                en={<Split text="A website can do a lot more than look good." />}
               />
             </h2>
           </div>

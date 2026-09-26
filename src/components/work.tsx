@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { usePrefs, useT } from "@/components/prefs";
+import { Split } from "@/components/split";
 import { projects } from "@/lib/site";
 import { Segmented } from "@/components/segmented";
 
@@ -29,10 +30,10 @@ export function Work() {
     <section id="trabajos" className="section bg-[var(--deep)]" aria-labelledby="trabajos-title">
       <div className="shell">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.8fr)] lg:items-end">
-          <div data-reveal>
-            <p className="kicker">{t("Trabajos", "Work")}</p>
-            <h2 id="trabajos-title" className="display mt-5 text-[length:var(--step-4)]">
-              {t("Una probadita de lo que ya construimos.", "A taste of what we've already built.")}
+          <div>
+            <p className="kicker" data-reveal>{t("Trabajos", "Work")}</p>
+            <h2 id="trabajos-title" className="display mt-5 text-[length:var(--step-4)]" data-reveal="lines">
+              <Split text={t("Una probadita de lo que ya construimos.", "A taste of what we've already built.")} />
             </h2>
           </div>
           <p className="lead" data-reveal style={{ ["--d" as string]: "80ms" }}>
@@ -60,7 +61,7 @@ export function Work() {
           {projects.map((p) => {
             const dim = cat !== "todos" && p.cat !== cat;
             return (
-              <li key={p.name.es} className="work-row" data-dim={dim} aria-hidden={dim || undefined} data-reveal>
+              <li key={p.name.es} className="work-row" data-dim={dim} aria-hidden={dim || undefined}>
                 <h3 className="display text-[length:var(--step-2)] !leading-tight">{lang === "en" ? p.name.en : p.name.es}</h3>
                 <p className="text-[color-mix(in_oklab,var(--snow)_78%,var(--mist))]">{lang === "en" ? p.body.en : p.body.es}</p>
                 {p.demo ? (

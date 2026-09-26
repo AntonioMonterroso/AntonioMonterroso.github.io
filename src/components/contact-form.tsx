@@ -17,15 +17,26 @@ export function ContactForm() {
   const ringRef = useRef<HTMLSpanElement>(null);
 
   // Al llegar desde un botón "Cotizar", el campo de tipo de proyecto se ilumina un momento:
-  // así se nota que ya viene elegido.
+  // así se nota que ya viene elegido. Espera a que termine el desplazamiento para que se vea.
   useEffect(() => {
-    if (!quoteSignal || !ringRef.current) return;
+    const ring = ringRef.current;
+    if (!quoteSignal || !ring) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    ringRef.current.animate([{ opacity: 1 }, { opacity: 1, offset: 0.35 }, { opacity: 0 }], {
-      duration: reduce ? 900 : 1600,
-      delay: reduce ? 0 : 450, // espera a que termine el desplazamiento
-      easing: "cubic-bezier(0.23, 1, 0.32, 1)",
-    });
+    let done = false;
+    const flash = () => {
+      if (done) return;
+      done = true;
+      ring.animate([{ opacity: 1 }, { opacity: 1, offset: 0.35 }, { opacity: 0 }], {
+        duration: reduce ? 900 : 1600,
+        easing: "cubic-bezier(0.23, 1, 0.32, 1)",
+      });
+    };
+    window.addEventListener("scrollend", flash, { once: true });
+    const fallback = setTimeout(flash, 900); // navegadores sin scrollend, o si no hubo que desplazarse
+    return () => {
+      window.removeEventListener("scrollend", flash);
+      clearTimeout(fallback);
+    };
   }, [quoteSignal]);
 
   function compose(form: HTMLFormElement) {

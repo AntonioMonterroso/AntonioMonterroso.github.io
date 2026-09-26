@@ -52,6 +52,7 @@ function transition(kind: "palette" | "lang", update: () => void, origin?: Point
   const root = document.documentElement;
   const reveal = kind === "palette" && origin && !reducedMotion();
   if (reveal) root.dataset.vt = "reveal";
+  else if (kind === "lang" && !reducedMotion()) root.dataset.vt = "lang";
   const t = doc.startViewTransition(async () => {
     update();
     // Deja que React pinte los textos/estados que dependen del cambio antes de la captura final

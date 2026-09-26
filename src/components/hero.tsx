@@ -56,20 +56,20 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="hero-fade flex flex-col gap-5 lg:items-end lg:self-end" style={{ ["--d" as string]: "480ms" }}>
-            <ul className="flex flex-wrap gap-2 lg:justify-end" aria-label="Incluye / Includes">
+          <div className="flex flex-col gap-5 lg:items-end lg:self-end">
+            <ul className="hero-fade flex flex-wrap gap-2 lg:justify-end" aria-label="Incluye / Includes" style={{ ["--d" as string]: "480ms" }}>
               <li className="chip"><T es="Tu color" en="Your colors" /></li>
               <li className="chip"><T es="Tu logo" en="Your logo" /></li>
               <li className="chip"><T es="Tu forma de trabajar" en="Your workflow" /></li>
             </ul>
-            <div className="w-full max-w-[29rem]">
+            <div className="code-enter w-full max-w-[29rem]" style={{ ["--d" as string]: "420ms" }}>
               <CodeWindow />
             </div>
           </div>
         </div>
       </div>
       <div className="shell relative z-10 -mt-9 flex justify-center">
-        <div className="hero-fade w-full max-w-[56rem]" style={{ ["--d" as string]: "600ms" }}>
+        <div className="hero-fade w-full max-w-[56rem]" style={{ ["--d" as string]: "380ms" }}>
           <ProjectPicker />
         </div>
       </div>

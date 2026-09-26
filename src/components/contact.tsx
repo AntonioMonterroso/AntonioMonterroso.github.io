@@ -1,5 +1,6 @@
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { T } from "@/components/t";
+import { Split } from "@/components/split";
 import { ContactForm } from "@/components/contact-form";
 import { site, whatsappLink } from "@/lib/site";
 
@@ -7,12 +8,12 @@ export function Contact() {
   return (
     <section id="contacto" className="section" aria-labelledby="contacto-title">
       <div className="shell grid gap-14 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
-        <div data-reveal>
-          <p className="kicker"><T es="Contacto" en="Contact" /></p>
-          <h2 id="contacto-title" className="display mt-5 text-[length:var(--step-4)]">
-            <T es="Cuéntanos qué necesitas." en="Tell us what you need." />
+        <div>
+          <p className="kicker" data-reveal><T es="Contacto" en="Contact" /></p>
+          <h2 id="contacto-title" className="display mt-5 text-[length:var(--step-4)]" data-reveal="lines">
+            <T es={<Split text="Cuéntanos qué necesitas." />} en={<Split text="Tell us what you need." />} />
           </h2>
-          <p className="lead mt-6">
+          <p className="lead mt-6" data-reveal style={{ ["--d" as string]: "150ms" }}>
             <T
               es="Te respondemos con preguntas concretas y, cuando toca, con una cotización por escrito."
               en="We'll reply with specific questions and, when it's time, a written quote."

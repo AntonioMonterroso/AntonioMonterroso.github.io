@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Check } from "lucide-react";
 import { T } from "@/components/t";
+import { Split } from "@/components/split";
 import { escritorioResponsive } from "@/lib/images";
 import { planPrices, type ProjectType } from "@/lib/site";
 import { QuoteLink } from "@/components/quote-link";
@@ -51,12 +52,12 @@ export function Plans() {
     <section id="planes" className="section" aria-labelledby="planes-title">
       <div className="shell">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:items-center">
-          <div data-reveal>
-            <p className="kicker"><T es="Planes" en="Plans" /></p>
-            <h2 id="planes-title" className="display mt-5 text-[length:var(--step-4)]">
-              <T es="Tres puntos de partida. Ninguno cerrado." en="Three starting points. None of them fixed." />
+          <div>
+            <p className="kicker" data-reveal><T es="Planes" en="Plans" /></p>
+            <h2 id="planes-title" className="display mt-5 text-[length:var(--step-4)]" data-reveal="lines">
+              <T es={<Split text="Tres puntos de partida. Ninguno cerrado." />} en={<Split text="Three starting points. None of them fixed." />} />
             </h2>
-            <p className="lead mt-6 max-w-[36rem]">
+            <p className="lead mt-6 max-w-[36rem]" data-reveal style={{ ["--d" as string]: "150ms" }}>
               <T
                 es="Casi todo lo que hoy resuelves con papeles, llamadas y hojas sueltas ya se puede hacer desde el navegador. Elige por dónde empezar y lo ajustamos a tu caso para que te ahorre tiempo de verdad."
                 en="Almost everything you handle today with paper, calls and loose spreadsheets can now live in the browser. Pick where to start and we'll shape it to your case so it actually saves you time."

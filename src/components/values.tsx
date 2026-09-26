@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { T } from "@/components/t";
+import { Split } from "@/components/split";
 import { laptopEntrega } from "@/lib/images";
 
 const values = [
@@ -45,10 +46,10 @@ export function Values() {
     <section id="estudio" className="section on-paper" aria-labelledby="estudio-title">
       <div className="shell grid gap-14 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
         <div>
-          <div data-reveal>
-            <p className="kicker"><T es="El estudio" en="The studio" /></p>
-            <h2 id="estudio-title" className="display mt-5 text-[length:var(--step-4)]">
-              <T es="Lo que no cambia de un proyecto a otro." en="What stays the same on every project." />
+          <div>
+            <p className="kicker" data-reveal><T es="El estudio" en="The studio" /></p>
+            <h2 id="estudio-title" className="display mt-5 text-[length:var(--step-4)]" data-reveal="lines">
+              <T es={<Split text="Lo que no cambia de un proyecto a otro." />} en={<Split text="What stays the same on every project." />} />
             </h2>
           </div>
           <div className="photo mt-10 aspect-[4/5] max-w-[26rem]" data-reveal style={{ ["--d" as string]: "80ms" }}>
