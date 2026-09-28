@@ -41,8 +41,8 @@ export function Volcanoes() {
         </filter>
       </defs>
 
-      <rect width="1600" height="1000" fill="url(#sky)" />
-      <rect width="1600" height="1000" fill="url(#glow)" />
+      <rect className="hero-sky" width="1600" height="1000" fill="url(#sky)" />
+      <rect className="hero-sky" width="1600" height="1000" fill="url(#glow)" />
 
       {/* Fumarola del Fuego */}
       <g filter="url(#soft)" style={{ fill: "var(--mist)" }}>

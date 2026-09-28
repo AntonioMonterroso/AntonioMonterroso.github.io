@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { LangToggle, PaletteSwitcher } from "@/components/palette-switcher";
 import { useT } from "@/components/prefs";
@@ -26,8 +26,11 @@ export function Logo() {
           <path d="M36 17 28 47" stroke="var(--brass)" />
         </g>
       </svg>
-      <span className="font-heading text-[length:var(--step-0)] leading-none font-medium tracking-tight">
-        Monterroso <span className="text-[var(--mist)]">Dev Studio</span>
+      <span className="font-heading flex flex-col leading-none font-medium tracking-tight sm:flex-row sm:items-baseline sm:gap-[0.3em]">
+        <span className="text-[length:var(--step-0)]">Monterroso</span>
+        <span className="mt-1 text-[0.625rem] tracking-[0.2em] text-[var(--mist)] uppercase sm:mt-0 sm:text-[length:var(--step-0)] sm:tracking-tight sm:normal-case">
+          Dev Studio
+        </span>
       </span>
     </a>
   );
@@ -99,7 +102,25 @@ export function SiteHeader() {
                 <Menu className="size-5" aria-hidden="true" />
               </button>
             </SheetTrigger>
-            <SheetContent side="right" className="border-[var(--line)] bg-[var(--deep)] p-6 text-[var(--snow)]">
+            <SheetContent
+              side="right"
+              showCloseButton={false}
+              // Al abrir, el foco va al panel (no a la ✕): con teclado, Tab entra al menú; con el dedo no aparece un anillo suelto
+              onOpenAutoFocus={(e) => {
+                e.preventDefault();
+                (e.currentTarget as HTMLElement).focus();
+              }}
+              className="border-[var(--line-strong)] bg-[var(--deep)] p-6 outline-none focus-visible:outline-none text-[var(--snow)] shadow-[-24px_0_48px_-12px_rgb(0_0_0/0.6)]"
+            >
+              <SheetClose asChild>
+                <button
+                  type="button"
+                  className="absolute top-3.5 right-[calc(var(--gutter)+0.75rem)] grid size-11 place-items-center rounded-full border border-[var(--line-strong)] transition-transform duration-150 active:scale-[0.97]"
+                  aria-label={t("Cerrar menú", "Close menu")}
+                >
+                  <X className="size-5" aria-hidden="true" />
+                </button>
+              </SheetClose>
               <SheetTitle className="sr-only">{t("Menú", "Menu")}</SheetTitle>
               <nav aria-label={t("Móvil", "Mobile")} className="mt-12">
                 <ul className="flex flex-col">

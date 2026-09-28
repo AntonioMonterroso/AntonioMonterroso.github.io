@@ -194,6 +194,11 @@ body {
   outline: 2px solid var(--brass);
   outline-offset: 3px;
 }
+/* El panel del menú recibe el foco al abrirse solo para contenerlo; no necesita anillo */
+[data-slot="sheet-content"]:focus,
+[data-slot="sheet-content"]:focus-visible {
+  outline: none;
+}
 
 /* Bilingüe sin JS: el texto de ambos idiomas se renderiza y CSS muestra uno */
 html:not([lang="en"]) .l-en,
@@ -320,9 +325,16 @@ html[lang="en"] .l-es {
   border-bottom: 1px solid transparent;
 }
 .site-header[data-scrolled="true"] {
-  background: color-mix(in oklab, var(--ink) 88%, transparent);
+  background: color-mix(in oklab, var(--ink) 95%, transparent);
   backdrop-filter: blur(12px);
   border-color: var(--line);
+}
+@media (max-width: 1023px) {
+  /* En celular el encabezado va sólido: el desenfoque dejaba leer el texto de atrás */
+  .site-header[data-scrolled="true"] {
+    background: var(--ink);
+    backdrop-filter: none;
+  }
 }
 .nav-link {
   position: relative;
@@ -442,6 +454,25 @@ html[lang="en"] .l-es {
   z-index: -1;
   width: 100%;
   height: 100%;
+}
+@media (max-width: 1023px) {
+  .hero-frame {
+    /* el cielo continúa el degradado del SVG hacia arriba */
+    background: linear-gradient(180deg, var(--navy-2) 0%, var(--navy-2) 40%, var(--navy) 100%);
+  }
+  .hero-landscape {
+    inset: auto;
+    bottom: 0;
+    left: 50%;
+    width: max(100%, 56rem);
+    height: auto;
+    aspect-ratio: 1600 / 1000;
+    transform: translateX(-54%);
+  }
+  .hero-sky {
+    /* en celular el cielo lo pinta el marco; así no queda una costura donde empieza el dibujo */
+    display: none;
+  }
 }
 .fog-drift {
   animation: fog-drift 38s linear infinite alternate;
@@ -920,8 +951,8 @@ select.field-input {
 .sheet-item {
   opacity: 0;
   transform: translateX(12px);
-  animation: sheet-in 380ms var(--ease-out) forwards;
-  animation-delay: calc(120ms + var(--i) * 40ms);
+  animation: sheet-in 300ms var(--ease-out) forwards;
+  animation-delay: calc(40ms + var(--i) * 30ms);
 }
 @keyframes sheet-in {
   to {
@@ -1030,6 +1061,14 @@ html.js .photo[data-reveal] {
 .wa-fab:active {
   transform: scale(0.97);
 }
+@media (max-width: 767px) {
+  .wa-fab {
+    right: 0.75rem;
+    bottom: 0.75rem;
+    width: 3rem;
+    height: 3rem;
+  }
+}
 
 /* Menos movimiento: se conservan opacidad y color, se quita el desplazamiento */
 @media (prefers-reduced-motion: reduce) {
@@ -1081,6 +1120,15 @@ html.js .photo[data-reveal] {
   }
   .sheet-item {
     transform: none;
+  }
+  [data-slot="sheet-content"] {
+    --tw-enter-translate-x: 0 !important;
+    --tw-exit-translate-x: 0 !important;
+    --tw-enter-translate-y: 0 !important;
+    --tw-exit-translate-y: 0 !important;
+    --tw-enter-opacity: 0 !important;
+    --tw-exit-opacity: 0 !important;
+    animation-duration: 200ms !important;
   }
   .wa-fab,
   .wa-fab[data-hidden="true"] {
