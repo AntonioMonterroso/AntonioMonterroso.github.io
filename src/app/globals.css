@@ -864,8 +864,13 @@ html[lang="en"] .l-es {
 }
 @media (min-width: 768px) {
   .work-row {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr) auto;
+    /* la última columna tiene ancho fijo para que las descripciones queden alineadas
+       aunque unas filas digan "Ver demo" y otras "(demo en GitHub, próximamente)" */
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr) 14.5rem;
     align-items: baseline;
+  }
+  .work-row > :last-child {
+    justify-self: end;
   }
 }
 .work-row[data-dim="true"] {

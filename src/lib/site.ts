@@ -50,6 +50,15 @@ export const projects: {
   demo: string | null;
 }[] = [
   {
+    cat: "panel",
+    name: { es: "Control Administrativo", en: "Admin Control" },
+    body: {
+      es: "Panel con inicio de sesión donde eliges la empresa y ves su información, con temas de color y modo claro u oscuro.",
+      en: "A login-protected panel where you pick the company and see its data, with color themes and light or dark mode.",
+    },
+    demo: "https://antoniomonterroso.github.io/DemoAdministrativo/",
+  },
+  {
     cat: "erp",
     name: { es: "ProMad Cloud", en: "ProMad Cloud" },
     body: {

@@ -29,19 +29,13 @@ export function Work() {
   return (
     <section id="trabajos" className="section bg-[var(--deep)]" aria-labelledby="trabajos-title">
       <div className="shell">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.8fr)] lg:items-end">
-          <div>
-            <p className="kicker" data-reveal>{t("Trabajos", "Work")}</p>
-            <h2 id="trabajos-title" className="display mt-5 text-[length:var(--step-4)]" data-reveal="lines">
-              <Split text={t("Una probadita de lo que ya construimos.", "A taste of what we've already built.")} />
-            </h2>
-          </div>
-          <p className="lead" data-reveal style={{ ["--d" as string]: "80ms" }}>
-            {t(
-              "Sistemas reales para negocios reales, de firmas contables a restaurantes. Los demos en vivo van a estar en GitHub ",
-              "Real systems for real businesses, from accounting firms to restaurants. Live demos are coming to GitHub ",
-            )}
-            <span className="paren">{t("(muy pronto)", "(very soon)")}</span>.
+        <div className="max-w-[52rem]">
+          <p className="kicker" data-reveal>{t("Trabajos", "Work")}</p>
+          <h2 id="trabajos-title" className="display mt-5 text-[length:var(--step-4)]" data-reveal="lines">
+            <Split text={t("Una demostración del trabajo que ya entregamos.", "A look at work we've already delivered.")} />
+          </h2>
+          <p className="mt-4 text-[length:var(--step--1)] text-[var(--mist)]" data-reveal style={{ ["--d" as string]: "150ms" }}>
+            {t("Con permiso de nuestros clientes", "Shared with our clients' permission")}
           </p>
         </div>
 
