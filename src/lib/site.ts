@@ -174,8 +174,9 @@ export const palettes = [
   { id: "salvia", es: "Salvia", en: "Sage", ink: "#f6faf4", accent: "#2f6a63" },
   { id: "rosa", es: "Rosa", en: "Blush", ink: "#fdf6f3", accent: "#a4455f" },
   { id: "lila", es: "Lila", en: "Lilac", ink: "#f8f6fd", accent: "#5b4bb0" },
-  { id: "noche", es: "Noche", en: "Night", ink: "#161b26", accent: "#a9d6c0" },
-  { id: "bosque", es: "Bosque", en: "Forest", ink: "#141f1b", accent: "#e8c982" },
+  { id: "marino", es: "Marino", en: "Navy", ink: "#07111f", accent: "#c8a96a" },
+  { id: "bosque", es: "Bosque", en: "Forest", ink: "#08120d", accent: "#c9a56b" },
+  { id: "vino", es: "Vino", en: "Wine", ink: "#14080c", accent: "#d2a77a" },
 ] as const;
 
 export type PaletteId = (typeof palettes)[number]["id"];

@@ -47,7 +47,7 @@ export const viewport: Viewport = {
 };
 
 // Aplica idioma y paleta guardados antes de pintar, para evitar un parpadeo.
-const prefsScript = `(function(){var d=document.documentElement;d.classList.add('js');try{var l=localStorage.getItem('mds-lang');if(l==='en'||l==='es')d.lang=l;var p=localStorage.getItem('mds-palette');if(p==='crema'||p==='salvia'||p==='rosa'||p==='lila'||p==='noche'||p==='bosque')d.dataset.palette=p;}catch(e){}})();`;
+const prefsScript = `(function(){var d=document.documentElement;d.classList.add('js');try{var l=localStorage.getItem('mds-lang');if(l==='en'||l==='es')d.lang=l;var p=localStorage.getItem('mds-palette');if(p==='crema'||p==='salvia'||p==='rosa'||p==='lila'||p==='marino'||p==='bosque'||p==='vino')d.dataset.palette=p;}catch(e){}})();`;
 
 const jsonLd = {
   "@context": "https://schema.org",

@@ -172,23 +172,24 @@
   --glow-a: #f8e9b8; --glow-b: #d6e8d5; --glow-c: #e4def6; --glow-o: 0.55;
 }
 
-/* Paletas oscuras: tinta profunda con un toque de color, un acento suave (--brass) y UN color de acción (--cta) que solo usan los botones y los precios,
-   para que el ojo siempre sepa dónde hacer clic. Los resplandores de fondo se mueven despacio. */
-[data-palette="noche"] {
-  --ink: #0f121b; --deep: #171c2a; --navy: #1e2536; --navy-2: #283250; --steel: #8d97b0; --mist: #aeb7cc; --snow: #f6f2ea;
-  --brass: #86dcb8; --brass-ink: #0c1f17; --cta: #ffb84d; --cta-ink: #231500;
-  --paper: #1e2536; --paper-2: #283250; --paper-ink: #f6f2ea; --paper-muted: #aeb7cc;
-  --pastel-a: #3d3421; --pastel-b: #1f3d33; --pastel-c: #46292f; --pastel-d: #2c2a56; --tile-ink: #f6f2ea; --tile-ok: #86dcb8;
-  --glow-a: #2e9bd6; --glow-b: #2fb59a; --glow-c: #5b6bd6; --glow-o: 0.26;
-  --sky-1: #121a38; --sky-2: #1c3556; --sky-3: #1a4a58; --vol-far: #264566; --vol-mid: #16293f;
+/* Paletas oscuras (las de la primera versión): marino, bosque y vino, con latón como acento y los mosaicos pastel de siempre. */
+[data-palette="marino"] {
+  --ink: #07111f; --deep: #0b1a2e; --navy: #102440; --navy-2: #1a3558; --steel: #5b82ad; --mist: #a7b8cc; --snow: #f2f4f7;
+  --brass: #c8a96a; --brass-ink: #241a09; --cta: #c8a96a; --cta-ink: #241a09;
+  --paper: #f4f2ec; --paper-2: #e8e5dc; --paper-ink: #0e1d33; --paper-muted: #4a5a70;
+  --pastel-a: #f8e9b8; --pastel-b: #d6e8d5; --pastel-c: #f9dad0; --pastel-d: #e4def6; --tile-ink: #1f2933; --tile-ok: #2e6b57; --glow-o: 0;
 }
 [data-palette="bosque"] {
-  --ink: #0b1512; --deep: #12211c; --navy: #193029; --navy-2: #234339; --steel: #8fae9f; --mist: #b5cbbf; --snow: #f4efe3;
-  --brass: #f0cd7a; --brass-ink: #221a05; --cta: #ff8f6b; --cta-ink: #2a0e04;
-  --paper: #193029; --paper-2: #234339; --paper-ink: #f4efe3; --paper-muted: #b5cbbf;
-  --pastel-a: #43391d; --pastel-b: #24503f; --pastel-c: #4d3128; --pastel-d: #2f3558; --tile-ink: #f4efe3; --tile-ok: #f0cd7a;
-  --glow-a: #2fb59a; --glow-b: #3f8f6b; --glow-c: #c9a85a; --glow-o: 0.24;
-  --sky-1: #0f2420; --sky-2: #1c4034; --sky-3: #3f5a3a; --vol-far: #2b5646; --vol-mid: #143026;
+  --ink: #08120d; --deep: #0d1c15; --navy: #13291f; --navy-2: #1e3c2e; --steel: #5e9275; --mist: #a9bfb1; --snow: #f1f5f2;
+  --brass: #c9a56b; --brass-ink: #241a09; --cta: #c9a56b; --cta-ink: #241a09;
+  --paper: #f3f2ea; --paper-2: #e6e5da; --paper-ink: #10231a; --paper-muted: #4b5e52;
+  --pastel-a: #f8e9b8; --pastel-b: #d6e8d5; --pastel-c: #f9dad0; --pastel-d: #e4def6; --tile-ink: #1f2933; --tile-ok: #2e6b57; --glow-o: 0;
+}
+[data-palette="vino"] {
+  --ink: #14080c; --deep: #1e0d13; --navy: #2c131c; --navy-2: #43202c; --steel: #a0616f; --mist: #d0b8be; --snow: #f7f1f2;
+  --brass: #d2a77a; --brass-ink: #2a1709; --cta: #d2a77a; --cta-ink: #2a1709;
+  --paper: #f6f1ee; --paper-2: #ebe2dd; --paper-ink: #2a1119; --paper-muted: #6a4f57;
+  --pastel-a: #f8e9b8; --pastel-b: #d6e8d5; --pastel-c: #f9dad0; --pastel-d: #e4def6; --tile-ink: #1f2933; --tile-ok: #2e6b57; --glow-o: 0;
 }
 
 :root {
@@ -1347,17 +1348,13 @@ body { background: transparent; position: relative; }
 @keyframes sheen { 0%, 70% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
 @media (prefers-reduced-motion: reduce) { .btn-brass::after { animation: none; } }
 
-/* En los temas oscuros el cielo del hero tiene un amanecer cálido y uno frío, para que no se vea plano */
-[data-palette="noche"] .hero-frame, [data-palette="bosque"] .hero-frame {
-  background-image:
-    radial-gradient(60% 50% at 85% 8%, color-mix(in oklab, var(--glow-a) 30%, transparent), transparent 70%),
-    radial-gradient(55% 45% at 5% 35%, color-mix(in oklab, var(--glow-c) 24%, transparent), transparent 70%),
-    linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 55%, var(--sky-3) 100%);
-}
 
-/* Oscuro: fotos atenuadas para que no deslumbren, secciones con ritmo y líneas finas */
-[data-palette="noche"] img:not([src$=".svg"]), [data-palette="bosque"] img:not([src$=".svg"]) { filter: brightness(0.78) saturate(0.85) contrast(1.05); }
-[data-palette="noche"] #proceso, [data-palette="noche"] #estudio, [data-palette="bosque"] #proceso, [data-palette="bosque"] #estudio {
-  background: linear-gradient(180deg, transparent 0%, color-mix(in oklab, var(--deep) 78%, transparent) 14%, color-mix(in oklab, var(--deep) 78%, transparent) 86%, transparent 100%);
-}
-[data-palette="noche"] .aurora i, [data-palette="bosque"] .aurora i { filter: blur(90px); }
+
+/* Texto sobre mosaicos pastel: siempre oscuro, también dentro de los temas oscuros */
+[style*="--pastel-"] :where(p, li, b, h2, h3, h4, small, span, dt, dd, em, strong) { color: var(--tile-ink); }
+[style*="--pastel-"] .px-ticks svg { color: var(--tile-ok); }
+
+/* En los temas oscuros el recuadro del precio es pastel: el precio es lo único claro de la tarjeta y atrae la mirada */
+:is([data-palette="marino"], [data-palette="bosque"], [data-palette="vino"]) .px-pricebox { background: var(--pastel-a); color: var(--tile-ink); }
+:is([data-palette="marino"], [data-palette="bosque"], [data-palette="vino"]) .px-pricebox :where(p, b, small, span) { color: var(--tile-ink); }
+:is([data-palette="marino"], [data-palette="bosque"], [data-palette="vino"]) .px-pricebox .px-mode.on { background: var(--tile-ink); color: var(--pastel-a); }
