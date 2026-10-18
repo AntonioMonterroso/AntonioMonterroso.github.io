@@ -1,6 +1,6 @@
 import { T } from "@/components/t";
 import { Logo } from "@/components/site-header";
-import { site, world } from "@/lib/site";
+import { site } from "@/lib/site";
 
 export function SiteFooter() {
   return (
@@ -20,7 +20,7 @@ export function SiteFooter() {
             {[
               ["#servicios", "Servicios", "Services"],
               ["#proceso", "Proceso", "Process"],
-              ["#planes", "Planes", "Plans"],
+              ["#planes", "Precios", "Pricing"],
               ["#trabajos", "Trabajos", "Work"],
               ["#contacto", "Contacto", "Contact"],
             ].map(([href, es, en]) => (
@@ -28,9 +28,6 @@ export function SiteFooter() {
                 <a href={href} className="nav-link"><T es={es} en={en} /></a>
               </li>
             ))}
-            <li>
-              <a href={world.prices} target="_blank" rel="noreferrer" className="nav-link"><T es="Precios" en="Pricing" /> ↗</a>
-            </li>
           </ul>
         </nav>
         <div className="grid content-start gap-2 text-[length:var(--step--1)] text-[var(--mist)]">
