@@ -153,3 +153,19 @@ export const FALLBACK_PACKAGES: Pkg[] = [
 export const FALLBACK_EXTRAS: Extra[] = [
   { id: "fe1", name: "Dominio propio (.com)", detail: "Tu cliente entra escribiendo tunegocio.com. Se registra a tu nombre y se paga al registrador; ronda entre US$10 y US$11 al año.", amount: 85, period: "year", approx: true, published: true, position: 1 },
 ];
+
+// ───────── Seguimiento y pagos (página del cliente) ─────────
+export function progressPct(ms: Pick<Milestone, "status">[] | undefined): number {
+  if (!ms || ms.length === 0) return 0;
+  const pts = ms.reduce((s, m) => s + (m.status === "done" ? 1 : m.status === "doing" ? 0.5 : 0), 0);
+  return Math.round((pts / ms.length) * 100);
+}
+export const nextMilestone = (ms: Milestone[] | undefined) => ms?.find((m) => m.status === "doing") ?? ms?.find((m) => m.status === "todo");
+export function paymentPlan(once: number, upfrontPct: number): { label: string; pct: number; amount: number }[] {
+  if (!(once > 0)) return [];
+  const pct = Math.min(100, Math.max(0, Math.round(upfrontPct)));
+  if (pct >= 100) return [{ label: "Al confirmar", pct: 100, amount: r2(once) }];
+  if (pct <= 0) return [{ label: "Al entregar", pct: 100, amount: r2(once) }];
+  const first = r2((once * pct) / 100);
+  return [{ label: "Al confirmar", pct, amount: first }, { label: "Al entregar", pct: 100 - pct, amount: r2(once - first) }];
+}
