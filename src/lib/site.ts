@@ -152,15 +152,6 @@ export const projects: {
   },
 ];
 
-/* ── Precios de los planes (sección "Planes") ───────────────────────────────
-   Mientras diga null, la página muestra "Precio (por cotizar)".
-   Ejemplo: presencia: { es: "Desde Q2,500", en: "From $325" },              */
-export const planPrices: Record<"presencia" | "operacion" | "empresa", null | { es: string; en: string }> = {
-  presencia: null,
-  operacion: null,
-  empresa: null,
-};
-
 /* ─────────────── De aquí para abajo no hace falta tocar nada ─────────────── */
 
 export const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -179,10 +170,10 @@ export const projectTypes = [
 export type ProjectType = (typeof projectTypes)[number]["id"];
 
 export const palettes = [
-  { id: "marino", es: "Marino", en: "Navy", ink: "#07111f", accent: "#1a3558" },
-  { id: "bosque", es: "Bosque", en: "Forest", ink: "#08120d", accent: "#1e3c2e" },
-  { id: "vino", es: "Vino", en: "Wine", ink: "#14080c", accent: "#43202c" },
-  { id: "grafito", es: "Grafito", en: "Graphite", ink: "#0e0f11", accent: "#2e3237" },
+  { id: "crema", es: "Crema", en: "Cream", ink: "#fbf7f0", accent: "#2e6b57" },
+  { id: "salvia", es: "Salvia", en: "Sage", ink: "#f6faf4", accent: "#2f6a63" },
+  { id: "rosa", es: "Rosa", en: "Blush", ink: "#fdf6f3", accent: "#a4455f" },
+  { id: "lila", es: "Lila", en: "Lilac", ink: "#f8f6fd", accent: "#5b4bb0" },
 ] as const;
 
 export type PaletteId = (typeof palettes)[number]["id"];

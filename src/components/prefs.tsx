@@ -83,8 +83,8 @@ export function PrefsProvider({ children }: { children: ReactNode }) {
   const lang = useSyncExternalStore(subscribeRoot, () => (document.documentElement.lang === "en" ? "en" : "es"), () => "es" as Lang);
   const palette = useSyncExternalStore(
     subscribeRoot,
-    () => (document.documentElement.dataset.palette as PaletteId | undefined) ?? "marino",
-    () => "marino" as PaletteId,
+    () => (document.documentElement.dataset.palette as PaletteId | undefined) ?? "crema",
+    () => "crema" as PaletteId,
   );
   const [projectType, setProjectType] = useState<ProjectType>("web");
   const [quoteSignal, setQuoteSignal] = useState(0);

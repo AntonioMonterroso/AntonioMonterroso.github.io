@@ -3,7 +3,7 @@ import { T } from "@/components/t";
 import { Volcanoes } from "@/components/volcanoes";
 import { CodeWindow } from "@/components/code-window";
 import { ProjectPicker } from "@/components/project-picker";
-import { QuoteLink } from "@/components/quote-link";
+import { PricingLink } from "@/components/pricing-link";
 
 export function Hero() {
   return (
@@ -49,10 +49,13 @@ export function Hero() {
               />
             </p>
             <div className="hero-fade mt-9 flex flex-wrap gap-3" style={{ ["--d" as string]: "360ms" }}>
-              <QuoteLink className="btn btn-solid">
+              <PricingLink tab="propuesta" className="btn btn-solid">
                 <T es="Cotizar mi proyecto" en="Quote my project" />
                 <ArrowRight className="nudge size-4" aria-hidden="true" />
-              </QuoteLink>
+              </PricingLink>
+              <PricingLink tab="precios" className="btn btn-ghost">
+                <T es="Ver precios" en="See prices" />
+              </PricingLink>
               <a href="#servicios" className="btn btn-ghost">
                 <T es="Ver lo que hacemos" en="See what we do" />
               </a>

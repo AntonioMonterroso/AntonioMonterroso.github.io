@@ -4,7 +4,7 @@ import { Hero } from "@/components/hero";
 import { Services } from "@/components/services";
 import { PaletteDemo } from "@/components/palette-demo";
 import { Process } from "@/components/process";
-import { Plans } from "@/components/plans";
+import { PricingSection } from "@/components/pricing-section";
 import { Work } from "@/components/work";
 import { Values } from "@/components/values";
 import { Contact } from "@/components/contact";
@@ -27,7 +27,7 @@ export default function Home() {
         <Services />
         <PaletteDemo />
         <Process />
-        <Plans />
+        <PricingSection />
         <Work />
         <Values />
         <Contact />

@@ -30,9 +30,9 @@ export function Contact() {
             <li className="flex gap-4">
               <Phone className="mt-1 size-5 shrink-0 text-[var(--brass)]" aria-hidden="true" />
               <div>
-                <p className="text-[length:var(--step--1)] text-[var(--mist)]"><T es="Teléfono y WhatsApp" en="Phone and WhatsApp" /></p>
+                <p className="text-[length:var(--step--1)] text-[var(--mist)]"><T es="WhatsApp" en="WhatsApp" /></p>
                 <a href={whatsappLink()} target="_blank" rel="noreferrer" className="underline-offset-4 hover:underline">
-                  {site.phoneDisplay}
+                  <T es="Escríbeme por WhatsApp" en="Message me on WhatsApp" />
                 </a>
               </div>
             </li>

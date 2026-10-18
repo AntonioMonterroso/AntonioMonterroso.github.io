@@ -43,11 +43,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#07111f",
+  themeColor: "#fbf7f0",
 };
 
 // Aplica idioma y paleta guardados antes de pintar, para evitar un parpadeo.
-const prefsScript = `(function(){var d=document.documentElement;d.classList.add('js');try{var l=localStorage.getItem('mds-lang');if(l==='en'||l==='es')d.lang=l;var p=localStorage.getItem('mds-palette');if(p)d.dataset.palette=p;}catch(e){}})();`;
+const prefsScript = `(function(){var d=document.documentElement;d.classList.add('js');try{var l=localStorage.getItem('mds-lang');if(l==='en'||l==='es')d.lang=l;var p=localStorage.getItem('mds-palette');if(p==='crema'||p==='salvia'||p==='rosa'||p==='lila')d.dataset.palette=p;}catch(e){}})();`;
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -56,7 +56,6 @@ const jsonLd = {
   description,
   url: site.url,
   email: site.email,
-  telephone: "+50237645139",
   areaServed: ["GT", "Worldwide"],
   address: { "@type": "PostalAddress", addressCountry: "GT" },
   knowsAbout: ["Desarrollo web", "Paneles administrativos", "Excel y VBA", "ERP"],
@@ -66,7 +65,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
-      data-palette="marino"
+      data-palette="crema"
       suppressHydrationWarning
       className={`${display.variable} ${body.variable} ${code.variable} h-full antialiased`}
     >

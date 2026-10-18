@@ -6,12 +6,12 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger, SheetClose } from "@/com
 import { LangToggle, PaletteSwitcher } from "@/components/palette-switcher";
 import { useT } from "@/components/prefs";
 import { T } from "@/components/t";
-import { QuoteLink } from "@/components/quote-link";
+import { PricingLink } from "@/components/pricing-link";
 
 const links = [
   { href: "#servicios", es: "Servicios", en: "Services" },
   { href: "#proceso", es: "Proceso", en: "Process" },
-  { href: "#planes", es: "Precios", en: "Pricing" },
+  { href: "#precios", es: "Precios", en: "Pricing" },
   { href: "#trabajos", es: "Trabajos", en: "Work" },
   { href: "#estudio", es: "El estudio", en: "Studio" },
 ];
@@ -89,9 +89,12 @@ export function SiteHeader() {
             <span aria-hidden="true" className="mx-1 h-5 w-px bg-[var(--line-strong)]" />
             <LangToggle />
           </div>
-          <QuoteLink className="btn btn-solid ml-2 hidden !min-h-10 !px-5 sm:inline-flex">
+          <PricingLink tab="precios" className="btn btn-ghost !min-h-10 !px-4 lg:hidden">
+            <T es="Precios" en="Pricing" />
+          </PricingLink>
+          <PricingLink tab="propuesta" className="btn btn-solid ml-1 hidden !min-h-10 !px-5 sm:inline-flex">
             <T es="Cotizar" en="Get a quote" />
-          </QuoteLink>
+          </PricingLink>
           <Sheet>
             <SheetTrigger asChild>
               <button

@@ -90,8 +90,8 @@ export function Process() {
             </li>
           ))}
           <li className="mt-4 list-none" data-reveal>
-            <a href="#planes" className="btn btn-solid">
-              <T es="Ver los planes" en="See the plans" />
+            <a href="#precios" className="btn btn-solid">
+              <T es="Ver los precios" en="See the prices" />
             </a>
           </li>
         </ol>

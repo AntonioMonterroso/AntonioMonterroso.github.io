@@ -20,7 +20,7 @@ export function SiteFooter() {
             {[
               ["#servicios", "Servicios", "Services"],
               ["#proceso", "Proceso", "Process"],
-              ["#planes", "Precios", "Pricing"],
+              ["#precios", "Precios", "Pricing"],
               ["#trabajos", "Trabajos", "Work"],
               ["#contacto", "Contacto", "Contact"],
             ].map(([href, es, en]) => (
