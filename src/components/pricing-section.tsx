@@ -30,7 +30,7 @@ export function PricingSection() {
   const [mode, setMode] = useState<PayMode | undefined>(undefined);
   // ejemplos y precios
   const [exIdx, setExIdx] = useState(0);
-  const [catF, setCatF] = useState("");
+  const [catF, setCatF] = useState<string | null>(null); // rubro elegido (null = aún no)
   const [modes, setModes] = useState<Record<string, PayMode>>({});
 
   useEffect(() => {
@@ -48,9 +48,15 @@ export function PricingSection() {
   const pkgs = (failed ? FALLBACK_PACKAGES : live?.packages ?? []).filter((p) => p.published !== false).sort((a, b) => a.position - b.position);
   const extras: Extra[] = (failed ? FALLBACK_EXTRAS : live?.extras ?? []).filter((e) => e.published !== false);
   const closed = pkgs.filter((p) => p.kind === "closed");
-  const cats = [...new Set(closed.map((p) => p.category ?? "Otros"))];
+  const GENERAL = "General";
+  const catOf = (p: Pkg) => p.category?.trim() || GENERAL;
+  const cats = [...new Set(closed.map(catOf))];
+  const rubro = cats.length === 1 ? cats[0] : catF; // con un solo rubro no hace falta elegir
+  const inRubro = rubro ? closed.filter((p) => catOf(p) === rubro) : [];
+  const fromPrice = (r: string) => { const v = closed.filter((p) => catOf(p) === r && p.show_price !== false).map((p) => { const o = payOptions(p); return Math.min(...o.map((x) => (x.mode === "once" ? x.once : x.monthly))); }).filter((n) => n > 0); return v.length ? Math.min(...v) : 0; };
 
-  const rec = forced ? pkgs.find((p) => p.id === forced) : recommendPkg(goals, pkgs);
+  const bizCat = cats.find((c) => biz && c.toLowerCase().slice(0, 5) === biz.toLowerCase().slice(0, 5));
+  const rec = forced ? pkgs.find((p) => p.id === forced) : recommendPkg(goals, bizCat ? pkgs.filter((p) => catOf(p as Pkg) === bizCat || p.kind === "custom") : pkgs);
   const dom = extras.find((e) => /dominio/i.test(e.name));
   const lines = useMemo(
     () => linesFromPick({ pkg: rec?.kind === "closed" ? rec : undefined, extras: goals.includes("domain") && dom ? [dom] : [], mode }),
@@ -184,17 +190,28 @@ export function PricingSection() {
               <div><h3 className="px-h3">{page.pricesTitle}</h3><p className="lead mt-2 max-w-[36rem]">{page.pricesSub}</p></div>
               <label className="px-iva"><input type="checkbox" checked={taxes} onChange={(e) => setTaxes(e.target.checked)} /> <T es="Con impuestos" en="With taxes" /></label>
             </div>
-            {cats.length > 1 && (
-              <div className="px-chips" role="group">
-                <button type="button" aria-pressed={!catF} className={`px-chip ${!catF ? "on" : ""}`} onClick={() => setCatF("")}><T es="Todos" en="All" /></button>
-                {cats.map((c) => <button key={c} type="button" aria-pressed={catF === c} className={`px-chip ${catF === c ? "on" : ""}`} onClick={() => setCatF(c)}>{c}</button>)}
-              </div>
+            {data !== null && cats.length > 1 && (
+              <>
+                <p className="px-step-label"><span>1</span><T es="Elige tu tipo de negocio" en="Pick your type of business" /></p>
+                <div className="px-rubros" role="group">
+                  {cats.map((c, i) => (
+                    <button key={c} type="button" aria-pressed={rubro === c} className={`px-rubro ${rubro === c ? "on" : ""}`} style={{ background: TINT[i % 4] }} onClick={() => setCatF(c)}>
+                      <b>{c}</b>
+                      <small>{closed.filter((p) => catOf(p) === c).length} <T es="opciones" en="options" />{fromPrice(c) > 0 && <> · <T es="desde" en="from" /> {money(fromPrice(c) * mul)}</>}</small>
+                    </button>
+                  ))}
+                </div>
+              </>
             )}
             {data === null ? <p className="px-fine mt-8"><T es="Cargando precios…" en="Loading prices…" /></p> : closed.length === 0 ? (
               <p className="lead mt-8"><T es="Los precios se preparan según tu caso. Cuéntame tu idea y te hago una propuesta." en="Prices depend on your case. Tell me your idea and I'll prepare a proposal." /></p>
+            ) : !rubro ? (
+              <p className="px-fine mt-6"><T es="Toca tu tipo de negocio y verás las opciones y precios pensados para él." en="Tap your type of business to see the options and prices made for it." /></p>
             ) : (
+              <>
+              {cats.length > 1 && <p className="px-step-label mt-8"><span>2</span><T es={`Opciones para ${rubro}`} en={`Options for ${rubro}`} /></p>}
               <div className="px-pgrid">
-                {closed.filter((p) => !catF || (p.category ?? "Otros") === catF).map((p, i) => {
+                {inRubro.map((p, i) => {
                   const opts = payOptions(p);
                   const cur = opts.find((o) => o.mode === modes[p.id]) ?? opts[0];
                   const show = p.show_price !== false;
@@ -203,7 +220,7 @@ export function PricingSection() {
                   return (
                     <article key={p.id} className={`px-pc ${p.recommended ? "rec" : ""}`}>
                       {p.recommended && <span className="px-badge"><T es="La más elegida" en="Most chosen" /></span>}
-                      {p.category && <span className="px-sector" style={{ background: TINT[i % 4] }}>{p.category}</span>}
+                      
                       <h4 className="display text-[length:var(--step-2)]">{p.name}</h4>
                       {p.tagline && <p className="text-[var(--mist)]">{p.tagline}</p>}
                       {show ? (
@@ -222,8 +239,9 @@ export function PricingSection() {
                   );
                 })}
               </div>
+              </>
             )}
-            {extras.length > 0 && closed.length > 0 && <p className="px-extras"><b><T es="Extras:" en="Extras:" /></b> {extras.map((e) => `${e.name} ${e.approx ? "≈ " : ""}${money(e.amount * mul)} ${PERIOD_LABEL[e.period].es}`).join(" · ")}</p>}
+            {rubro && extras.length > 0 && closed.length > 0 && <p className="px-extras"><b><T es="Extras:" en="Extras:" /></b> {extras.map((e) => `${e.name} ${e.approx ? "≈ " : ""}${money(e.amount * mul)} ${PERIOD_LABEL[e.period].es}`).join(" · ")}</p>}
             <p className="px-fine mt-4">{page.footer}</p>
           </div>
         )}
