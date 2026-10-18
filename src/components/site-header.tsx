@@ -26,12 +26,9 @@ export function Logo() {
           <path d="M36 17 28 47" stroke="var(--brass)" />
         </g>
       </svg>
-      <span className="font-heading flex flex-col gap-[0.35rem] leading-none whitespace-nowrap">
-        <span className="text-[1.0625rem] font-semibold tracking-tight">Monterroso</span>
-        <span className="flex items-center gap-2 text-[0.72rem] font-semibold tracking-[0.3em] text-[var(--brass)] uppercase">
-          <i aria-hidden="true" className="h-px w-3 bg-[var(--brass)] opacity-70" />
-          Dev Studio
-        </span>
+      <span className="font-heading flex flex-col leading-[1.1] font-medium tracking-tight whitespace-nowrap">
+        <span className="text-[length:var(--step-0)]">Monterroso</span>
+        <span className="text-[length:var(--step-0)] text-[var(--mist)]">Dev Studio</span>
       </span>
     </a>
   );
