@@ -195,7 +195,7 @@ export function PricingSection() {
                 <p className="px-step-label"><span>1</span><T es="Elige tu tipo de negocio" en="Pick your type of business" /></p>
                 <div className="px-rubros" role="group">
                   {cats.map((c, i) => (
-                    <button key={c} type="button" aria-pressed={rubro === c} className={`px-rubro ${rubro === c ? "on" : ""}`} style={{ background: TINT[i % 4] }} onClick={() => setCatF(c)}>
+                    <button key={c} type="button" aria-pressed={rubro === c} data-spot className={`px-rubro ${rubro === c ? "on" : ""}`} style={{ background: TINT[i % 4] }} onClick={() => setCatF(c)}>
                       <b>{c}</b>
                       <small>{closed.filter((p) => catOf(p) === c).length} <T es="opciones" en="options" />{fromPrice(c) > 0 && <> · <T es="desde" en="from" /> {money(fromPrice(c) * mul)}</>}</small>
                     </button>
@@ -218,7 +218,7 @@ export function PricingSection() {
                   const pm = `Hola, me interesa «${p.name}»${show ? (cur.mode === "once" ? ` en pago único (${money(cur.once * mul)})` : ` con mensualidad (${money(cur.monthly * mul)} al mes y ${money(cur.setup * mul)} de activación)`) : ""}${taxes ? ", con impuestos" : ""}.`;
                   const yes = p.features.filter((f) => f.included);
                   return (
-                    <article key={p.id} className={`px-pc ${p.recommended ? "rec" : ""}`}>
+                    <article key={p.id} data-spot className={`px-pc ${p.recommended ? "rec" : ""}`}>
                       {p.recommended && <span className="px-badge"><T es="La más elegida" en="Most chosen" /></span>}
                       
                       <h4 className="display text-[length:var(--step-2)]">{p.name}</h4>

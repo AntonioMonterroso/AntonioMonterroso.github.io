@@ -95,6 +95,9 @@
   --pastel-d: #e4def6;
   --tile-ink: #1f2933;
   --tile-ok: #2e6b57;
+  --cta: var(--brass);
+  --cta-ink: var(--brass-ink);
+  --glow-a: #f8e9b8; --glow-b: #d6e8d5; --glow-c: #e4def6; --glow-o: 0.55;
 }
 [data-palette="salvia"] {
   --ink: #f6faf4;
@@ -116,6 +119,9 @@
   --pastel-d: #d6e4f0;
   --tile-ink: #1f2933;
   --tile-ok: #2e6b57;
+  --cta: var(--brass);
+  --cta-ink: var(--brass-ink);
+  --glow-a: #f8e9b8; --glow-b: #d6e8d5; --glow-c: #e4def6; --glow-o: 0.55;
 }
 [data-palette="rosa"] {
   --ink: #fdf6f3;
@@ -137,6 +143,9 @@
   --pastel-d: #ead9ee;
   --tile-ink: #1f2933;
   --tile-ok: #2e6b57;
+  --cta: var(--brass);
+  --cta-ink: var(--brass-ink);
+  --glow-a: #f8e9b8; --glow-b: #d6e8d5; --glow-c: #e4def6; --glow-o: 0.55;
 }
 [data-palette="lila"] {
   --ink: #f8f6fd;
@@ -158,18 +167,26 @@
   --pastel-d: #dfeed9;
   --tile-ink: #1f2933;
   --tile-ok: #2e6b57;
+  --cta: var(--brass);
+  --cta-ink: var(--brass-ink);
+  --glow-a: #f8e9b8; --glow-b: #d6e8d5; --glow-c: #e4def6; --glow-o: 0.55;
 }
 
-/* Paletas oscuras: fondos profundos, azulados o verdosos (nunca negro puro) y mosaicos pastel apagados. */
+/* Paletas oscuras: tinta profunda con un toque de color, un acento suave (--brass) y UN color de acción (--cta) que solo usan los botones y los precios,
+   para que el ojo siempre sepa dónde hacer clic. Los resplandores de fondo se mueven despacio. */
 [data-palette="noche"] {
-  --ink: #161b26; --deep: #1e2433; --navy: #262d3f; --navy-2: #303852; --steel: #8a93ab; --mist: #b4bccf; --snow: #f3efe6;
-  --brass: #a9d6c0; --brass-ink: #14201b; --paper: #262d3f; --paper-2: #303852; --paper-ink: #f3efe6; --paper-muted: #b4bccf;
-  --pastel-a: #4a4326; --pastel-b: #2c4638; --pastel-c: #4d3333; --pastel-d: #3a3560; --tile-ink: #f3efe6; --tile-ok: #a9d6c0;
+  --ink: #0f121b; --deep: #171c2a; --navy: #1e2536; --navy-2: #283250; --steel: #8d97b0; --mist: #aeb7cc; --snow: #f6f2ea;
+  --brass: #86dcb8; --brass-ink: #0c1f17; --cta: #ffb84d; --cta-ink: #231500;
+  --paper: #1e2536; --paper-2: #283250; --paper-ink: #f6f2ea; --paper-muted: #aeb7cc;
+  --pastel-a: #3d3421; --pastel-b: #1f3d33; --pastel-c: #46292f; --pastel-d: #2c2a56; --tile-ink: #f6f2ea; --tile-ok: #86dcb8;
+  --glow-a: #ffb84d; --glow-b: #3fbf94; --glow-c: #6a5de0; --glow-o: 0.22;
 }
 [data-palette="bosque"] {
-  --ink: #141f1b; --deep: #1c2b25; --navy: #243830; --navy-2: #2e463c; --steel: #8aa396; --mist: #b3c7bb; --snow: #f1ede2;
-  --brass: #e8c982; --brass-ink: #1f1a0c; --paper: #243830; --paper-2: #2e463c; --paper-ink: #f1ede2; --paper-muted: #b3c7bb;
-  --pastel-a: #4a4326; --pastel-b: #2f5240; --pastel-c: #4f3a31; --pastel-d: #353a5c; --tile-ink: #f1ede2; --tile-ok: #e8c982;
+  --ink: #0b1512; --deep: #12211c; --navy: #193029; --navy-2: #234339; --steel: #8fae9f; --mist: #b5cbbf; --snow: #f4efe3;
+  --brass: #f0cd7a; --brass-ink: #221a05; --cta: #ff8f6b; --cta-ink: #2a0e04;
+  --paper: #193029; --paper-2: #234339; --paper-ink: #f4efe3; --paper-muted: #b5cbbf;
+  --pastel-a: #43391d; --pastel-b: #24503f; --pastel-c: #4d3128; --pastel-d: #2f3558; --tile-ink: #f4efe3; --tile-ok: #f0cd7a;
+  --glow-a: #ff8f6b; --glow-b: #3fbf94; --glow-c: #f0cd7a; --glow-o: 0.2;
 }
 
 :root {
@@ -320,8 +337,8 @@ html[lang="en"] .l-es {
   color: var(--ink);
 }
 .btn-brass {
-  background: var(--brass);
-  color: var(--brass-ink);
+  background: var(--cta);
+  color: var(--cta-ink);
 }
 .btn-ghost {
   border-color: var(--line-strong);
@@ -339,7 +356,7 @@ html[lang="en"] .l-es {
     background: color-mix(in oklab, var(--snow) 86%, var(--brass));
   }
   .btn-brass:hover {
-    background: color-mix(in oklab, var(--brass) 86%, var(--snow));
+    background: color-mix(in oklab, var(--cta) 88%, var(--snow));
   }
   .btn-ghost:hover {
     border-color: var(--mist);
@@ -1301,3 +1318,37 @@ html.js .photo[data-reveal] {
 .px-rubro.on { box-shadow: 0 0 0 2px var(--snow); }
 .px-rubro:active { transform: scale(0.97); }
 @media (hover: hover) and (pointer: fine) { .px-rubro:hover { transform: translateY(-2px); } }
+
+/* ─── Fondo vivo: resplandores que se mueven despacio y un foco que sigue al cursor ─── */
+html { background: var(--ink); }
+body { background: transparent; position: relative; }
+.aurora { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.aurora i { position: absolute; width: 55vmax; height: 55vmax; border-radius: 50%; filter: blur(70px); opacity: var(--glow-o); will-change: transform; }
+.aurora i:nth-child(1) { background: radial-gradient(circle, var(--glow-a), transparent 65%); top: -18vmax; left: -12vmax; animation: drift-a 34s ease-in-out infinite alternate; }
+.aurora i:nth-child(2) { background: radial-gradient(circle, var(--glow-b), transparent 65%); top: 30vh; right: -20vmax; animation: drift-b 42s ease-in-out infinite alternate; }
+.aurora i:nth-child(3) { background: radial-gradient(circle, var(--glow-c), transparent 65%); bottom: -25vmax; left: 15vw; animation: drift-c 38s ease-in-out infinite alternate; }
+@keyframes drift-a { to { transform: translate3d(18vw, 14vh, 0) scale(1.15); } }
+@keyframes drift-b { to { transform: translate3d(-22vw, -10vh, 0) scale(0.9); } }
+@keyframes drift-c { to { transform: translate3d(20vw, -16vh, 0) scale(1.1); } }
+@media (prefers-reduced-motion: reduce) { .aurora i { animation: none; } }
+
+[data-spot] { position: relative; overflow: hidden; }
+[data-spot]::before { content: ""; position: absolute; inset: 0; z-index: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity 250ms var(--ease-out);
+  background: radial-gradient(22rem circle at var(--mx, 50%) var(--my, 50%), color-mix(in oklab, var(--cta) 16%, transparent), transparent 70%); }
+[data-spot] > * { position: relative; z-index: 1; }
+@media (hover: hover) and (pointer: fine) { [data-spot]:hover::before { opacity: 1; } }
+
+/* El color de acción: precios y botón principal destacan sobre todo lo demás */
+.px-price b, .cp-sum p:first-child b { color: var(--cta); }
+.btn-brass { position: relative; overflow: hidden; }
+.btn-brass::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 35%, rgb(255 255 255 / 0.35) 50%, transparent 65%); transform: translateX(-120%); animation: sheen 6s var(--ease-out) 2s infinite; pointer-events: none; }
+@keyframes sheen { 0%, 70% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+@media (prefers-reduced-motion: reduce) { .btn-brass::after { animation: none; } }
+
+/* En los temas oscuros el cielo del hero tiene un amanecer cálido y uno frío, para que no se vea plano */
+[data-palette="noche"] .hero-frame, [data-palette="bosque"] .hero-frame {
+  background-image:
+    radial-gradient(60% 50% at 85% 8%, color-mix(in oklab, var(--glow-a) 30%, transparent), transparent 70%),
+    radial-gradient(55% 45% at 5% 35%, color-mix(in oklab, var(--glow-c) 24%, transparent), transparent 70%),
+    linear-gradient(180deg, var(--navy-2) 0%, var(--navy) 55%, var(--deep) 100%);
+}

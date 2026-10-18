@@ -11,6 +11,7 @@ import { Contact } from "@/components/contact";
 import { SiteFooter } from "@/components/site-footer";
 import { WhatsAppFab } from "@/components/whatsapp-fab";
 import { RevealObserver } from "@/components/reveal-observer";
+import { Spotlight } from "@/components/spotlight";
 
 export default function Home() {
   return (
@@ -35,6 +36,7 @@ export default function Home() {
       <SiteFooter />
       <WhatsAppFab />
       <RevealObserver />
+      <Spotlight />
     </PrefsProvider>
   );
 }

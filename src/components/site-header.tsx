@@ -92,7 +92,7 @@ export function SiteHeader() {
           <PricingLink tab="precios" className="btn btn-ghost !min-h-10 !px-4 lg:hidden">
             <T es="Precios" en="Pricing" />
           </PricingLink>
-          <PricingLink tab="propuesta" className="btn btn-solid ml-1 hidden !min-h-10 !px-5 sm:inline-flex">
+          <PricingLink tab="propuesta" className="btn btn-brass ml-1 hidden !min-h-10 !px-5 sm:inline-flex">
             <T es="Cotizar" en="Get a quote" />
           </PricingLink>
           <Sheet>

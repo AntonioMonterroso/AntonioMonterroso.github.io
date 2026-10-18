@@ -49,7 +49,7 @@ export function Hero() {
               />
             </p>
             <div className="hero-fade mt-9 flex flex-wrap gap-3" style={{ ["--d" as string]: "360ms" }}>
-              <PricingLink tab="propuesta" className="btn btn-solid">
+              <PricingLink tab="propuesta" className="btn btn-brass">
                 <T es="Cotizar mi proyecto" en="Quote my project" />
                 <ArrowRight className="nudge size-4" aria-hidden="true" />
               </PricingLink>

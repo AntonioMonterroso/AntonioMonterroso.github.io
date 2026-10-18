@@ -75,7 +75,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </Script>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full"><div className="aurora" aria-hidden="true"><i /><i /><i /></div>{children}</body>
     </html>
   );
 }
