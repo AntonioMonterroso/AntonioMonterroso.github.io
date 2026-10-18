@@ -20,9 +20,9 @@ export function Volcanoes() {
     >
       <defs>
         <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" style={{ stopColor: "var(--navy-2)" }} />
-          <stop offset="0.55" style={{ stopColor: "var(--navy)" }} />
-          <stop offset="1" style={{ stopColor: "var(--deep)" }} />
+          <stop offset="0" style={{ stopColor: "var(--sky-1, var(--navy-2))" }} />
+          <stop offset="0.55" style={{ stopColor: "var(--sky-2, var(--navy))" }} />
+          <stop offset="1" style={{ stopColor: "var(--sky-3, var(--deep))" }} />
         </linearGradient>
         <radialGradient id="glow" cx="0.74" cy="0.16" r="0.5">
           <stop offset="0" style={{ stopColor: "var(--mist)", stopOpacity: 0.22 }} />
@@ -54,7 +54,7 @@ export function Volcanoes() {
       {/* Cordillera lejana: Acatenango y Fuego */}
       <path
         d="M0 780 Q 240 700 390 610 Q 470 540 520 478 L 548 474 Q 580 492 606 500 Q 632 470 652 452 L 668 454 Q 720 520 820 600 Q 960 700 1180 760 L 1600 800 L 1600 1000 L 0 1000 Z"
-        style={{ fill: "color-mix(in oklab, var(--navy-2) 70%, var(--mist))" }}
+        style={{ fill: "var(--vol-far, color-mix(in oklab, var(--navy-2) 70%, var(--mist)))" }}
         opacity="0.5"
       />
 
@@ -65,7 +65,7 @@ export function Volcanoes() {
       {/* Volcán de Agua */}
       <path
         d="M760 830 Q 1030 610 1112 432 L 1160 428 Q 1250 610 1530 830 L 1600 850 L 1600 1000 L 700 1000 Z"
-        style={{ fill: "var(--navy)" }}
+        style={{ fill: "var(--vol-mid, var(--navy))" }}
       />
       <path
         d="M1112 432 L 1160 428 Q 1172 452 1186 486 Q 1160 470 1136 480 Q 1118 468 1098 470 Q 1106 452 1112 432 Z"
