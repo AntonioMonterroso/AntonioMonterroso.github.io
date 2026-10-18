@@ -18,17 +18,18 @@ const links = [
 
 export function Logo() {
   return (
-    <a href="#inicio" className="flex items-center gap-2.5" aria-label="Monterroso Dev Studio">
-      <svg viewBox="0 0 64 64" className="size-8" aria-hidden="true">
+    <a href="#inicio" className="flex shrink-0 items-center gap-3" aria-label="Monterroso Dev Studio">
+      <svg viewBox="0 0 64 64" className="size-9 shrink-0" aria-hidden="true">
         <rect width="64" height="64" rx="16" fill="var(--navy-2)" />
         <g fill="none" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M22 21 11 32l11 11M42 21l11 11-11 11" stroke="var(--snow)" />
           <path d="M36 17 28 47" stroke="var(--brass)" />
         </g>
       </svg>
-      <span className="font-heading flex flex-col leading-none font-medium tracking-tight sm:flex-row sm:items-baseline sm:gap-[0.3em]">
-        <span className="text-[length:var(--step-0)]">Monterroso</span>
-        <span className="mt-1 text-[0.625rem] tracking-[0.2em] text-[var(--mist)] uppercase sm:mt-0 sm:text-[length:var(--step-0)] sm:tracking-tight sm:normal-case">
+      <span className="font-heading flex flex-col gap-[0.35rem] leading-none whitespace-nowrap">
+        <span className="text-[1.0625rem] font-semibold tracking-tight">Monterroso</span>
+        <span className="flex items-center gap-2 text-[0.72rem] font-semibold tracking-[0.3em] text-[var(--brass)] uppercase">
+          <i aria-hidden="true" className="h-px w-3 bg-[var(--brass)] opacity-70" />
           Dev Studio
         </span>
       </span>
