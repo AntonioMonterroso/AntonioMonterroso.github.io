@@ -5,6 +5,7 @@ import { Split } from "@/components/split";
 import { escritorioResponsive } from "@/lib/images";
 import { planPrices, type ProjectType } from "@/lib/site";
 import { QuoteLink } from "@/components/quote-link";
+import { LivePrices } from "@/components/live-prices";
 
 // Los precios se editan en src/lib/site.ts (planPrices).
 const plans = [
@@ -115,6 +116,8 @@ export function Plans() {
             </article>
           ))}
         </div>
+
+        <LivePrices />
       </div>
     </section>
   );

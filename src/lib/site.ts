@@ -38,6 +38,17 @@ export const site = {
   url: process.env.SITE_URL || "https://monterroso-dev-studio.github.io",
 };
 
+/* ── Monterroso World (tu app y tus precios) ─────────────────────────────────
+   Los precios de abajo se editan en la app (Trabajo → Precios públicos) y se
+   leen en vivo: no hace falta tocar esta página para cambiarlos.
+   La llave "anon" es pública por diseño (solo permite leer lo publicado).   */
+export const world = {
+  home: "https://antoniomonterroso.github.io/monterroso-world/",
+  prices: "https://antoniomonterroso.github.io/monterroso-world/precios",
+  supabaseUrl: "https://mrujxfkrvzfotvxgfadg.supabase.co",
+  anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ydWp4Zmtydnpmb3R2eGdmYWRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA4MTY0MzEsImV4cCI6MjEwNjM5MjQzMX0.ldBJ-n8u1sjMK5RuzI7hngoc_EocwA3_y4WnPAS_-ys",
+};
+
 /* ── Proyectos (sección "Trabajos") ──────────────────────────────────────────
    Para cada proyecto, cambia  demo: null  por el link de su demo, por ejemplo
    demo: "https://github.com/tu-usuario/promad-cloud",

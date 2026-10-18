@@ -7,6 +7,7 @@ import { LangToggle, PaletteSwitcher } from "@/components/palette-switcher";
 import { useT } from "@/components/prefs";
 import { T } from "@/components/t";
 import { QuoteLink } from "@/components/quote-link";
+import { world } from "@/lib/site";
 
 const links = [
   { href: "#servicios", es: "Servicios", en: "Services" },
@@ -81,6 +82,11 @@ export function SiteHeader() {
                 </a>
               </li>
             ))}
+            <li>
+              <a className="nav-link" href={world.prices} target="_blank" rel="noreferrer">
+                <T es="Precios" en="Pricing" /> ↗
+              </a>
+            </li>
           </ul>
         </nav>
         <div className="flex items-center gap-2">
@@ -136,6 +142,11 @@ export function SiteHeader() {
                       </SheetClose>
                     </li>
                   ))}
+                  <li className="sheet-item" style={{ ["--i" as string]: links.length + 1 }}>
+                    <a href={world.prices} target="_blank" rel="noreferrer" className="font-heading block border-b border-[var(--line)] py-4 text-[length:var(--step-2)] tracking-tight">
+                      <T es="Precios" en="Pricing" /> ↗
+                    </a>
+                  </li>
                 </ul>
               </nav>
               <div className="mt-auto flex flex-col gap-4">

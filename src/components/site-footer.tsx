@@ -1,6 +1,6 @@
 import { T } from "@/components/t";
 import { Logo } from "@/components/site-header";
-import { site } from "@/lib/site";
+import { site, world } from "@/lib/site";
 
 export function SiteFooter() {
   return (
@@ -28,6 +28,9 @@ export function SiteFooter() {
                 <a href={href} className="nav-link"><T es={es} en={en} /></a>
               </li>
             ))}
+            <li>
+              <a href={world.prices} target="_blank" rel="noreferrer" className="nav-link"><T es="Precios" en="Pricing" /> ↗</a>
+            </li>
           </ul>
         </nav>
         <div className="grid content-start gap-2 text-[length:var(--step--1)] text-[var(--mist)]">
