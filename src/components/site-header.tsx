@@ -68,7 +68,7 @@ export function SiteHeader() {
 
   return (
     <header className="site-header" data-scrolled={scrolled}>
-      <div className="shell flex h-18 items-center justify-between gap-6 !px-[calc(var(--gutter)+0.75rem)]">
+      <div className="shell flex h-18 items-center justify-between gap-3 sm:gap-6 !px-[calc(var(--gutter)+0.75rem)]">
         <Logo />
         <nav aria-label={t("Principal", "Main")} className="hidden lg:block">
           <ul className="flex items-center gap-7">
@@ -82,12 +82,15 @@ export function SiteHeader() {
           </ul>
         </nav>
         <div className="flex items-center gap-2">
-          <div className="hidden items-center gap-1 md:flex">
-            <PaletteSwitcher />
-            <span aria-hidden="true" className="mx-1 h-5 w-px bg-[var(--line-strong)]" />
+          <div className="hidden items-center gap-1 min-[900px]:flex">
+            {/* Entre 1024 y 1279 el menú completo ocupa el espacio: ahí solo queda el idioma */}
+            <div className="flex items-center gap-1 lg:max-xl:hidden">
+              <PaletteSwitcher />
+              <span aria-hidden="true" className="mx-1 h-5 w-px bg-[var(--line-strong)]" />
+            </div>
             <LangToggle />
           </div>
-          <PricingLink tab="precios" className="btn btn-ghost !min-h-10 !px-4 lg:hidden">
+          <PricingLink tab="precios" className="btn btn-ghost hidden !min-h-10 !px-4 min-[380px]:inline-flex lg:hidden">
             <T es="Precios" en="Pricing" />
           </PricingLink>
           <PricingLink tab="propuesta" className="btn btn-brass ml-1 hidden !min-h-10 !px-5 sm:inline-flex">

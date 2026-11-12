@@ -14,7 +14,7 @@ export function Hero() {
           aria-hidden="true"
           className="absolute inset-0 -z-[1] bg-[linear-gradient(180deg,color-mix(in_oklab,var(--ink)_35%,transparent)_0%,transparent_45%)] lg:bg-[linear-gradient(100deg,color-mix(in_oklab,var(--ink)_62%,transparent)_0%,transparent_62%)]"
         />
-        <div className="shell grid min-h-[inherit] items-center gap-12 pt-32 pb-28 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:pb-36">
+        <div className="shell grid min-h-[inherit] grid-cols-[minmax(0,1fr)] items-center gap-12 pt-32 pb-28 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:pb-36">
           <div>
             <p className="kicker hero-fade" style={{ ["--d" as string]: "0ms" }}>
               <T
