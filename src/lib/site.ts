@@ -34,8 +34,8 @@ export const site = {
   social: [] as { label: string; href: string }[],
 
   // Dirección pública de la página. La publicación en GitHub la llena sola;
-  // cámbiala solo si compras un dominio propio.
-  url: process.env.SITE_URL || "https://monterroso-dev-studio.github.io",
+  // dominio propio: studiomonterroso.com (comprado en Porkbun, 2026-11-11).
+  url: process.env.SITE_URL || "https://studiomonterroso.com",
 };
 
 /* ── Monterroso World (tu app y tus precios) ─────────────────────────────────
@@ -43,8 +43,8 @@ export const site = {
    leen en vivo: no hace falta tocar esta página para cambiarlos.
    La llave "anon" es pública por diseño (solo permite leer lo publicado).   */
 export const world = {
-  home: "https://antoniomonterroso.github.io/monterroso-world/",
-  prices: "https://antoniomonterroso.github.io/monterroso-world/precios",
+  home: "https://world.studiomonterroso.com/",
+  prices: "https://world.studiomonterroso.com/precios",
   supabaseUrl: "https://mrujxfkrvzfotvxgfadg.supabase.co",
   anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ydWp4Zmtydnpmb3R2eGdmYWRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA4MTY0MzEsImV4cCI6MjEwNjM5MjQzMX0.ldBJ-n8u1sjMK5RuzI7hngoc_EocwA3_y4WnPAS_-ys",
 };
@@ -67,7 +67,7 @@ export const projects: {
       es: "Panel con inicio de sesión donde eliges la empresa y ves su información, con temas de color y modo claro u oscuro.",
       en: "A login-protected panel where you pick the company and see its data, with color themes and light or dark mode.",
     },
-    demo: "https://antoniomonterroso.github.io/DemoAdministrativo/",
+    demo: "https://studiomonterroso.com/DemoAdministrativo/",
   },
   {
     cat: "erp",
@@ -103,7 +103,7 @@ export const projects: {
       es: "Productos únicos, varias vendedoras, cajas, gastos y comisiones que se calculan solas.",
       en: "One-of-a-kind products, several sellers, cash registers, expenses and commissions that calculate themselves.",
     },
-    demo: "https://antoniomonterroso.github.io/LaCabana/demo",
+    demo: "https://studiomonterroso.com/LaCabana/demo",
   },
   {
     cat: "panel",
