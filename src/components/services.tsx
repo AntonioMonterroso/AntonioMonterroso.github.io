@@ -70,15 +70,15 @@ export function Services() {
             <p className="kicker" data-reveal><T es="Qué hacemos" en="What we do" /></p>
             <h2 id="servicios-title" className="display mt-5 text-[length:var(--step-4)]" data-reveal="lines">
               <T
-                es={<Split text="Una página web puede hacer mucho más que verse bien." />}
-                en={<Split text="A website can do a lot more than look good." />}
+                es={<Split text="Una página web tiene que verse bien. Y también trabajar." />}
+                en={<Split text="A website has to look good. And it has to work, too." />}
               />
             </h2>
           </div>
           <p className="lead max-w-[36rem]" data-reveal style={{ ["--d" as string]: "80ms" }}>
             <T
-              es="Puede cobrar, agendar, llevar tu inventario, mandar reportes y ahorrarte horas de Excel. Trabajamos en cuatro frentes, y casi siempre se combinan."
-              en="It can take payments, book appointments, track inventory, send reports and save you hours of Excel. We work on four fronts, and they usually end up working together."
+              es="El diseño es lo primero que ve tu cliente, y sí importa: de eso depende que confíe en ti. Detrás, la misma página puede cobrar, agendar, llevar tu inventario, mandar reportes y ahorrarte horas de Excel. Trabajamos en cuatro frentes, y casi siempre se combinan."
+              en="Design is the first thing your customer sees, and it matters: it decides whether they trust you. Behind it, the same site can take payments, book appointments, track inventory, send reports and save you hours of Excel. We work on four fronts, and they usually end up working together."
             />
           </p>
         </div>
