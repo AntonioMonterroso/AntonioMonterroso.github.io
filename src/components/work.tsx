@@ -32,7 +32,7 @@ export function Work() {
         <div className="max-w-[52rem]">
           <p className="kicker" data-reveal>{t("Trabajos", "Work")}</p>
           <h2 id="trabajos-title" className="display mt-5 text-[length:var(--step-4)]" data-reveal="lines">
-            <Split text={t("Una demostración del trabajo que ya entregamos.", "A look at work we've already delivered.")} />
+            <Split text={t("Parte del trabajo que ya entregamos.", "Some of the work we have already delivered.")} />
           </h2>
           <p className="mt-4 text-[length:var(--step--1)] text-[var(--mist)]" data-reveal style={{ ["--d" as string]: "150ms" }}>
             {t("Con permiso de nuestros clientes", "Shared with our clients' permission")}
@@ -63,7 +63,7 @@ export function Work() {
                     {t("Ver demo", "View demo")}
                   </a>
                 ) : (
-                  <span className="paren-soon">{t("(demo en GitHub, próximamente)", "(GitHub demo, coming soon)")}</span>
+                  <span aria-hidden="true" />
                 )}
               </li>
             );

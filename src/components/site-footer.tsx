@@ -31,21 +31,13 @@ export function SiteFooter() {
           </ul>
         </nav>
         <div className="grid content-start gap-2 text-[length:var(--step--1)] text-[var(--mist)]">
-          <p>
-            <T es="Redes sociales" en="Social media" />{" "}
-            {site.social.length ? null : <span className="paren"><T es="(pendiente)" en="(coming soon)" /></span>}
-          </p>
+          {/* Redes y GitHub aparecen solos cuando se llenan en site.ts */}
           {site.social.map((s) => (
             <a key={s.href} href={s.href} target="_blank" rel="noreferrer" className="nav-link">{s.label}</a>
           ))}
-          <p>
-            GitHub{" "}
-            {site.github ? (
-              <a href={site.github} target="_blank" rel="noreferrer" className="nav-link">↗</a>
-            ) : (
-              <span className="paren"><T es="(próximamente)" en="(coming soon)" /></span>
-            )}
-          </p>
+          {site.github ? (
+            <a href={site.github} target="_blank" rel="noreferrer" className="nav-link">GitHub ↗</a>
+          ) : null}
         </div>
       </div>
       <div className="border-t border-[var(--line)]">

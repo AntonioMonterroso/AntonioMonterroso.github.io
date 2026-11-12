@@ -82,12 +82,12 @@ export function PricingSection() {
       <div className="shell">
         <p className="kicker" data-reveal><T es="Precios y propuestas" en="Pricing & proposals" /></p>
         <h2 id="precios-title" className="display mt-5 max-w-[22ch] text-[length:var(--step-4)]" data-reveal>
-          <T es="Elige con calma. Te propongo lo que te convenga." en="Take your time. I'll propose what suits you." />
+          <T es="Elige con calma. Te proponemos lo que te convenga." en="Take your time. We'll propose what suits you." />
         </h2>
         <p className="lead mt-5 max-w-[40rem]" data-reveal style={{ ["--d" as string]: "100ms" }}>
           <T
-            es="Cuéntame de tu negocio y te preparo una propuesta, mira ejemplos de problemas que ya resolvemos o ve directo a los precios. Sin compromiso."
-            en="Tell me about your business and I'll prepare a proposal, browse problems we've already solved, or go straight to the prices. No strings attached."
+            es="Cuéntanos de tu negocio y te preparamos una propuesta, mira ejemplos de problemas que ya resolvemos o ve directo a los precios. Sin compromiso."
+            en="Tell us about your business and we'll prepare a proposal, browse problems we've already solved, or go straight to the prices. No strings attached."
           />
         </p>
 
@@ -136,7 +136,7 @@ export function PricingSection() {
                     <details className="px-invest">
                       <summary><T es="Ver la inversión" en="See the investment" /></summary>
                       {rec.kind === "custom" ? (
-                        <p>{rec.price_note ?? "Se cotiza"}. <T es="Primero conozco tu caso y te preparo una propuesta formal por escrito. Hasta entonces no pagas nada." en="First I get to know your case and prepare a written proposal. You pay nothing until then." /></p>
+                        <p>{rec.price_note ?? "Se cotiza"}. <T es="Primero conocemos tu caso y te preparamos una propuesta formal por escrito. Hasta entonces no pagas nada." en="First we get to know your case and prepare a written proposal. You pay nothing until then." /></p>
                       ) : (
                         <>
                           {payOptions(rec).length > 1 && (
@@ -150,7 +150,7 @@ export function PricingSection() {
                     </details>
                   </>
                 ) : (
-                  <p className="lead mt-8"><T es="Cuéntame tu idea y te preparo una propuesta a tu medida." en="Tell me your idea and I'll prepare a proposal for you." /></p>
+                  <p className="lead mt-8"><T es="Cuéntanos tu idea y te preparamos una propuesta a tu medida." en="Tell us your idea and we'll prepare a proposal for you." /></p>
                 )}
                 <div className="px-actions">
                   <a className="btn btn-brass" href={wa(msg)} target="_blank" rel="noreferrer"><MessageCircle className="size-4" aria-hidden="true" /> <T es="Quiero que me envíes esta propuesta" en="Send me this proposal" /></a>
@@ -204,7 +204,7 @@ export function PricingSection() {
               </>
             )}
             {data === null ? <p className="px-fine mt-8"><T es="Cargando precios…" en="Loading prices…" /></p> : closed.length === 0 ? (
-              <p className="lead mt-8"><T es="Los precios se preparan según tu caso. Cuéntame tu idea y te hago una propuesta." en="Prices depend on your case. Tell me your idea and I'll prepare a proposal." /></p>
+              <p className="lead mt-8"><T es="Los precios se preparan según tu caso. Cuéntanos tu idea y te hacemos una propuesta." en="Prices depend on your case. Tell us your idea and we'll prepare a proposal." /></p>
             ) : !rubro ? (
               <p className="px-fine mt-6"><T es="Toca tu tipo de negocio y verás las opciones y precios pensados para él." en="Tap your type of business to see the options and prices made for it." /></p>
             ) : (
@@ -230,7 +230,7 @@ export function PricingSection() {
                             ? <p className="px-price"><b>{money(cur.once * mul)}</b> <small><T es="pago único" en="one payment" /></small></p>
                             : <><p className="px-price"><b>{money(cur.monthly * mul)}</b> <small><T es="al mes" en="per month" /></small></p>{cur.setup > 0 && <p className="px-fine"><T es={`+ ${money(cur.setup * mul)} de activación, una sola vez`} en={`+ ${money(cur.setup * mul)} setup, one time`} /></p>}</>}
                         </div>
-                      ) : <p className="px-fine"><T es="El precio depende de tu caso. Te preparo una propuesta." en="The price depends on your case. I'll prepare a proposal." /></p>}
+                      ) : <p className="px-fine"><T es="El precio depende de tu caso. Te preparamos una propuesta." en="The price depends on your case. We'll prepare a proposal." /></p>}
                       <ul className="px-ticks">{yes.slice(0, 5).map((f, j) => <li key={j}><Check className="size-4" aria-hidden="true" />{f.text}</li>)}</ul>
                       {yes.length > 5 && <details className="px-more"><summary><T es="Ver todo lo que incluye" en="See everything included" /></summary><ul className="px-ticks">{yes.slice(5).map((f, j) => <li key={j}><Check className="size-4" aria-hidden="true" />{f.text}</li>)}</ul></details>}
                       <a className={`btn ${p.recommended ? "btn-brass" : "btn-solid"} mt-auto`} href={wa(pm)} target="_blank" rel="noreferrer">{show ? <T es="Pedir este proyecto" en="Request this project" /> : <T es="Pedir propuesta" en="Request a proposal" />}</a>

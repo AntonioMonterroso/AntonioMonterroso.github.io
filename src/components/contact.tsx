@@ -32,7 +32,7 @@ export function Contact() {
               <div>
                 <p className="text-[length:var(--step--1)] text-[var(--mist)]"><T es="WhatsApp" en="WhatsApp" /></p>
                 <a href={whatsappLink()} target="_blank" rel="noreferrer" className="underline-offset-4 hover:underline">
-                  <T es="Escríbeme por WhatsApp" en="Message me on WhatsApp" />
+                  <T es="Escríbenos por WhatsApp" en="Message us on WhatsApp" />
                 </a>
               </div>
             </li>
@@ -43,17 +43,16 @@ export function Contact() {
                 <p><T es={site.location.es} en={site.location.en} /></p>
               </div>
             </li>
-            <li className="flex gap-4">
-              <Clock className="mt-1 size-5 shrink-0 text-[var(--brass)]" aria-hidden="true" />
-              <div>
-                <p className="text-[length:var(--step--1)] text-[var(--mist)]"><T es="Horario" en="Hours" /></p>
-                {site.hours ? (
+            {/* El horario solo se muestra cuando está definido en site.ts */}
+            {site.hours ? (
+              <li className="flex gap-4">
+                <Clock className="mt-1 size-5 shrink-0 text-[var(--brass)]" aria-hidden="true" />
+                <div>
+                  <p className="text-[length:var(--step--1)] text-[var(--mist)]"><T es="Horario" en="Hours" /></p>
                   <p><T es={site.hours.es} en={site.hours.en} /></p>
-                ) : (
-                  <p className="paren"><T es="(pendiente)" en="(to be announced)" /></p>
-                )}
-              </div>
-            </li>
+                </div>
+              </li>
+            ) : null}
           </ul>
         </div>
         <div className="rounded-[1.5rem] border border-[var(--line)] bg-[var(--deep)] p-[clamp(1.25rem,0.8rem+2vw,2.5rem)]" data-reveal style={{ ["--d" as string]: "80ms" }}>
