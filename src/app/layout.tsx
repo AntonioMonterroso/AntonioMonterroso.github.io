@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     alternateLocale: ["en_US"],
     siteName: site.name,
   },
-  twitter: { card: "summary", title, description },
+  twitter: { card: "summary_large_image", title, description },
 };
 
 export const viewport: Viewport = {
