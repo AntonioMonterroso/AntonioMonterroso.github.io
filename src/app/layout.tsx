@@ -75,7 +75,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </Script>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
-      <body className="min-h-full"><div className="aurora" aria-hidden="true"><i /><i /><i /></div>{children}</body>
+      <body className="min-h-full"><div className="aurora" aria-hidden="true"><i /><i /><i /></div>{children}
+        {/* Google (Tag Manager / Analytics): cuenta visitas. Solo en esta página pública. */}
+        <Script src="https://www.googletagmanager.com/gtm.js?id=GTM-NDV5S6G3" strategy="afterInteractive" />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());`}
+        </Script>
+      </body>
     </html>
   );
 }
