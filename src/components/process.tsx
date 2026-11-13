@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import { T } from "@/components/t";
 import { Split } from "@/components/split";
 import { bocetoAcuarela } from "@/lib/images";
@@ -90,8 +91,9 @@ export function Process() {
             </li>
           ))}
           <li className="mt-4 list-none" data-reveal>
-            <a href="#precios" className="btn btn-solid">
+            <a href="#precios" className="btn btn-brass">
               <T es="Ver los precios" en="See the prices" />
+              <ArrowRight className="nudge size-4" aria-hidden="true" />
             </a>
           </li>
         </ol>

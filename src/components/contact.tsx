@@ -1,5 +1,7 @@
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import Image from "next/image";
 import { T } from "@/components/t";
+import { atitlanMuelle } from "@/lib/images";
 import { Split } from "@/components/split";
 import { ContactForm } from "@/components/contact-form";
 import { site, whatsappLink } from "@/lib/site";
@@ -54,8 +56,21 @@ export function Contact() {
               </li>
             ) : null}
           </ul>
+          <figure className="contact-photo mt-10" data-reveal style={{ ["--d" as string]: "120ms" }}>
+            <Image
+              src={atitlanMuelle.src}
+              width={atitlanMuelle.width}
+              height={atitlanMuelle.height}
+              alt="Muelle de madera en el Lago de Atitlán con volcanes al fondo"
+              sizes="(min-width: 1024px) 40vw, 100vw"
+            />
+            <figcaption>
+              <b><T es="Desde Guatemala" en="From Guatemala" /></b>
+              <span><T es="Para clientes de aquí y de cualquier país." en="For clients here and anywhere else." /></span>
+            </figcaption>
+          </figure>
         </div>
-        <div className="rounded-[1.5rem] border border-[var(--line)] bg-[var(--deep)] p-[clamp(1.25rem,0.8rem+2vw,2.5rem)]" data-reveal style={{ ["--d" as string]: "80ms" }}>
+        <div className="rounded-[1.75rem] border border-[var(--line)] bg-[var(--deep)] p-[clamp(1.25rem,0.8rem+2vw,2.5rem)]" data-reveal style={{ ["--d" as string]: "80ms" }}>
           <ContactForm />
         </div>
       </div>

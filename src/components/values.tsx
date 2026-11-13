@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { T } from "@/components/t";
 import { Split } from "@/components/split";
-import { laptopEntrega } from "@/lib/images";
+import { antiguaArco } from "@/lib/images";
 
 const values = [
   {
@@ -54,10 +54,10 @@ export function Values() {
           </div>
           <div className="photo mt-10 aspect-[4/5] max-w-[26rem]" data-reveal style={{ ["--d" as string]: "80ms" }}>
             <Image
-              src={laptopEntrega.src}
-              width={laptopEntrega.width}
-              height={laptopEntrega.height}
-              alt="Laptop abierta sobre una mesa de madera mostrando una página web, junto a una planta"
+              src={antiguaArco.src}
+              width={antiguaArco.width}
+              height={antiguaArco.height}
+              alt="El Arco de Santa Catalina en Antigua Guatemala, con el Volcán de Agua al fondo"
               sizes="(min-width: 1024px) 50vw, 100vw"
             />
           </div>

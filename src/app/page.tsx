@@ -1,6 +1,6 @@
 import { Landing } from "@/components/landing";
-import { Hero } from "@/components/hero";
+import { HeroCalido } from "@/components/hero-calido";
 
 export default function Home() {
-  return <Landing hero={<Hero />} />;
+  return <Landing hero={<HeroCalido />} />;
 }

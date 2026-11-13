@@ -1,15 +1,15 @@
-// Fotos del cliente (contexto/diseno/), recortadas y comprimidas a WebP: 176 KB entre las cuatro.
-// Viven en public/images/ y se cargan solo cuando el visitante llega a cada sección.
+// Fotos de la página en public/images/ (WebP). La acuarela es del cliente; las demás son de Unsplash (licencia libre).
+// Se cargan solo cuando el visitante llega a cada sección (la portada se carga primero).
 
 import { basePath } from "@/lib/site";
 
 export type SiteImage = { src: string; width: number; height: number };
 
 export const bocetoAcuarela: SiteImage = { src: basePath + "/images/boceto-acuarela.webp", width: 1200, height: 800 };
-export const escritorioResponsive: SiteImage = { src: basePath + "/images/escritorio-responsive.webp", width: 1100, height: 852 };
-export const laptopEntrega: SiteImage = { src: basePath + "/images/laptop-entrega.webp", width: 800, height: 1200 };
-export const sistemasIsometrico: SiteImage = { src: basePath + "/images/sistemas-isometrico.webp", width: 1200, height: 700 };
+export const manosLaptop: SiteImage = { src: basePath + "/images/manos-laptop.webp", width: 1400, height: 933 };
+export const antiguaArco: SiteImage = { src: basePath + "/images/antigua-arco.webp", width: 900, height: 1125 };
+export const atitlanMuelle: SiteImage = { src: basePath + "/images/atitlan-muelle.webp", width: 1600, height: 900 };
+export const escritorioDiseno: SiteImage = { src: basePath + "/images/escritorio-diseno.webp", width: 1400, height: 1000 };
 
-// Portadas (Unsplash, licencia libre): escritorio 2200 px y celular 900×1500 recortada.
+// Portada: Volcán de Agua (escritorio 2200 px y celular 900×1500 recortada).
 export const volcanAgua = { src: basePath + "/images/volcan-agua-calido.webp", mobile: basePath + "/images/volcan-agua-calido-m.webp", width: 2200, height: 1468 };
-export const volcanFuego = { src: basePath + "/images/volcan-fuego-noche.webp", mobile: basePath + "/images/volcan-fuego-noche-m.webp", width: 2200, height: 1467 };

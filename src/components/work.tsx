@@ -5,6 +5,8 @@ import { usePrefs, useT } from "@/components/prefs";
 import { Split } from "@/components/split";
 import { projects } from "@/lib/site";
 import { Segmented } from "@/components/segmented";
+import Image from "next/image";
+import { escritorioDiseno } from "@/lib/images";
 
 type Cat = "todos" | "web" | "panel" | "erp" | "esp";
 
@@ -29,6 +31,7 @@ export function Work() {
   return (
     <section id="trabajos" className="section bg-[var(--deep)]" aria-labelledby="trabajos-title">
       <div className="shell">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end">
         <div className="max-w-[52rem]">
           <p className="kicker" data-reveal>{t("Trabajos", "Work")}</p>
           <h2 id="trabajos-title" className="display mt-5 text-[length:var(--step-4)]" data-reveal="lines">
@@ -37,6 +40,16 @@ export function Work() {
           <p className="mt-4 text-[length:var(--step--1)] text-[var(--mist)]" data-reveal style={{ ["--d" as string]: "150ms" }}>
             {t("Con permiso de nuestros clientes", "Shared with our clients' permission")}
           </p>
+        </div>
+        <div className="photo aspect-[7/5]" data-reveal style={{ ["--d" as string]: "80ms" }}>
+          <Image
+            src={escritorioDiseno.src}
+            width={escritorioDiseno.width}
+            height={escritorioDiseno.height}
+            alt="Escritorio con una laptop que muestra un diseño, una lámpara encendida y una taza"
+            sizes="(min-width: 1024px) 40vw, 100vw"
+          />
+        </div>
         </div>
 
         <div className="mt-12" data-reveal>
@@ -51,7 +64,7 @@ export function Work() {
           />
         </div>
 
-        <ul className="mt-8">
+        <ul className="work-list mt-6">
           {projects.map((p) => {
             const dim = cat !== "todos" && p.cat !== cat;
             return (
@@ -70,16 +83,13 @@ export function Work() {
           })}
         </ul>
 
-        <div className="mt-20 border-t border-[var(--line)] pt-10" data-reveal>
+        <div className="mt-16" data-reveal>
           <p className="kicker">{t("Rubros que vienen", "Industries up next")}</p>
-          <p className="display mt-6 max-w-[64rem] text-[length:var(--step-3)] !leading-[1.25] text-[var(--mist)]">
+          <ul className="mt-6 flex max-w-[64rem] flex-wrap gap-2.5">
             {future[lang].map((f, i) => (
-              <span key={f}>
-                <span className={i === future[lang].length - 1 ? "text-[var(--brass)]" : undefined}>({f})</span>
-                {i < future[lang].length - 1 ? " " : ""}
-              </span>
+              <li key={f} className={`rubro-pill ${i === future[lang].length - 1 ? "rubro-pill-you" : ""}`}>{f}</li>
             ))}
-          </p>
+          </ul>
         </div>
       </div>
     </section>
