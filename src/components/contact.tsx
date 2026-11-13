@@ -1,4 +1,5 @@
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { SectionPhoto } from "@/components/section-photo";
 import { T } from "@/components/t";
 import { Split } from "@/components/split";
 import { ContactForm } from "@/components/contact-form";
@@ -6,7 +7,8 @@ import { site, whatsappLink } from "@/lib/site";
 
 export function Contact() {
   return (
-    <section id="contacto" className="section" aria-labelledby="contacto-title">
+    <section id="contacto" className="section ph" aria-labelledby="contacto-title">
+      <SectionPhoto name="fondo-contacto" />
       <div className="shell grid gap-14 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
         <div>
           <p className="kicker" data-reveal><T es="Contacto" en="Contact" /></p>
@@ -55,7 +57,7 @@ export function Contact() {
             ) : null}
           </ul>
         </div>
-        <div className="rounded-[1.75rem] border border-[var(--line)] bg-[var(--deep)] p-[clamp(1.25rem,0.8rem+2vw,2.5rem)]" data-reveal style={{ ["--d" as string]: "80ms" }}>
+        <div className="glass-card rounded-[1.75rem] border border-[var(--line)] bg-[var(--deep)] p-[clamp(1.25rem,0.8rem+2vw,2.5rem)]" data-reveal style={{ ["--d" as string]: "80ms" }}>
           <ContactForm />
         </div>
       </div>

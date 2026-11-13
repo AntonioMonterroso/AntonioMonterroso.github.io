@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { SectionPhoto } from "@/components/section-photo";
 import { T } from "@/components/t";
 import { Split } from "@/components/split";
 import { laptopEntrega } from "@/lib/images";
@@ -43,7 +44,8 @@ const values = [
 
 export function Values() {
   return (
-    <section id="estudio" className="section on-paper" aria-labelledby="estudio-title">
+    <section id="estudio" className="section on-paper ph" aria-labelledby="estudio-title">
+      <SectionPhoto name="fondo-estudio" />
       <div className="shell grid gap-14 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
         <div>
           <div>
@@ -62,7 +64,7 @@ export function Values() {
             />
           </div>
         </div>
-        <dl className="self-center">
+        <dl className="glass-card glass-pad self-center">
           {values.map((v, i) => (
             <div
               key={v.title.es}

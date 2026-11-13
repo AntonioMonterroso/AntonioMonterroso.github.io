@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { SectionPhoto } from "@/components/section-photo";
 import { T } from "@/components/t";
 import { Split } from "@/components/split";
 import { sistemasIsometrico } from "@/lib/images";
@@ -63,7 +64,8 @@ const services = [
 
 export function Services() {
   return (
-    <section id="servicios" className="section" aria-labelledby="servicios-title">
+    <section id="servicios" className="section ph" aria-labelledby="servicios-title">
+      <SectionPhoto name="fondo-servicios" />
       <div className="shell">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-end">
           <div>
@@ -104,7 +106,7 @@ export function Services() {
           ))}
         </div>
 
-        <div className="mt-4 grid overflow-hidden rounded-[1.75rem] border border-[var(--line)] bg-[var(--deep)] md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
+        <div className="glass-card mt-4 grid overflow-hidden rounded-[1.75rem] border border-[var(--line)] bg-[var(--deep)] md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
           <div className="flex flex-col justify-center gap-5 p-[clamp(1.75rem,1rem+3vw,3.5rem)]">
             <p className="kicker"><T es="Y también" en="And also" /></p>
             <h3 className="display text-[length:var(--step-3)]">

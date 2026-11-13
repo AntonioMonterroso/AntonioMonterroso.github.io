@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { SectionPhoto } from "@/components/section-photo";
 import { T } from "@/components/t";
 import { Split } from "@/components/split";
 import { bocetoAcuarela } from "@/lib/images";
@@ -45,7 +46,8 @@ const steps = [
 
 export function Process() {
   return (
-    <section id="proceso" className="section on-paper" aria-labelledby="proceso-title">
+    <section id="proceso" className="section on-paper ph" aria-labelledby="proceso-title">
+      <SectionPhoto name="fondo-proceso" />
       <div className="shell grid gap-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-20">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <div>
@@ -76,7 +78,7 @@ export function Process() {
           </figure>
         </div>
 
-        <ol className="lg:pt-4">
+        <ol className="glass-card glass-pad">
           {steps.map((s, i) => (
             <li key={s.title.es} className={`step ${s.highlight ? "step-highlight" : ""}`} data-reveal style={{ ["--d" as string]: `${i * 60}ms` }}>
               <span className="step-num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
