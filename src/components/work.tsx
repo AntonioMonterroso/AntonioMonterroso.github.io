@@ -58,13 +58,6 @@ export function Work() {
               <li key={p.name.es} className="work-row" data-dim={dim} aria-hidden={dim || undefined}>
                 <h3 className="display text-[length:var(--step-2)] !leading-tight">{lang === "en" ? p.name.en : p.name.es}</h3>
                 <p className="text-[color-mix(in_oklab,var(--snow)_78%,var(--mist))]">{lang === "en" ? p.body.en : p.body.es}</p>
-                {p.demo ? (
-                  <a href={p.demo} className="paren-soon underline underline-offset-4" target="_blank" rel="noreferrer">
-                    {t("Ver demo", "View demo")}
-                  </a>
-                ) : (
-                  <span aria-hidden="true" />
-                )}
               </li>
             );
           })}
