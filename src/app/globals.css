@@ -1832,3 +1832,7 @@ main#main > section.on-paper { background: color-mix(in oklab, var(--paper) 55%,
 .work-list { background: transparent; border: 0; padding: 0; border-radius: 0; }
 .work-list .work-row:first-child { border-top: 1px solid var(--line); }
 .tag { background: transparent; border-color: var(--line); }
+
+/* Portada sin marco: la foto llega a las orillas de la pantalla (sin borde claro alrededor) */
+.hero.hr { padding: 0; }
+.hr-frame { border-radius: 0; min-height: min(100svh, 64rem); }
