@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { SectionPhoto } from "@/components/section-photo";
 import { T } from "@/components/t";
 import { Split } from "@/components/split";
 import { bocetoAcuarela } from "@/lib/images";
@@ -46,8 +45,7 @@ const steps = [
 
 export function Process() {
   return (
-    <section id="proceso" className="section on-paper ph" aria-labelledby="proceso-title">
-      <SectionPhoto name="fondo-proceso" />
+    <section id="proceso" className="section on-paper" aria-labelledby="proceso-title">
       <div className="shell grid gap-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-20">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <div>

@@ -5,7 +5,6 @@ import { usePrefs, useT } from "@/components/prefs";
 import { Split } from "@/components/split";
 import { projects } from "@/lib/site";
 import { Segmented } from "@/components/segmented";
-import { SectionPhoto } from "@/components/section-photo";
 
 type Cat = "todos" | "web" | "panel" | "erp" | "esp";
 
@@ -28,8 +27,7 @@ export function Work() {
   const t = useT();
 
   return (
-    <section id="trabajos" className="section ph" aria-labelledby="trabajos-title">
-      <SectionPhoto name="fondo-trabajos" />
+    <section id="trabajos" className="section" aria-labelledby="trabajos-title">
       <div className="shell">
         <div className="max-w-[52rem]">
           <p className="kicker" data-reveal>{t("Trabajos", "Work")}</p>

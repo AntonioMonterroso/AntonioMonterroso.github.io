@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { SectionPhoto } from "@/components/section-photo";
 import { T } from "@/components/t";
 import { Split } from "@/components/split";
 import { sistemasIsometrico } from "@/lib/images";
@@ -64,8 +63,7 @@ const services = [
 
 export function Services() {
   return (
-    <section id="servicios" className="section ph" aria-labelledby="servicios-title">
-      <SectionPhoto name="fondo-servicios" />
+    <section id="servicios" className="section" aria-labelledby="servicios-title">
       <div className="shell">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-end">
           <div>

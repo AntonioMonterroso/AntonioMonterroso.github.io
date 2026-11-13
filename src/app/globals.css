@@ -1823,43 +1823,12 @@ body:has([data-hero-dark]) .site-header:not([data-scrolled="true"]) button[aria-
   backdrop-filter: blur(8px);
 }
 
-/* ═══ Secciones con foto de fondo (.ph), como la portada: texto claro sobre la foto y tarjetas claras encima ═══ */
-main#main > section.ph { position: relative; isolation: isolate; background: #1a2433; }
-.ph-img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
-.ph-veil {
-  position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background: linear-gradient(180deg, rgb(10 16 30 / 0.66) 0%, rgb(10 16 30 / 0.5) 45%, rgb(10 16 30 / 0.72) 100%);
-}
-.ph {
-  --snow: #f7f3ec; --mist: rgb(247 243 236 / 0.8);
-  --line: rgb(247 243 236 / 0.22); --line-strong: rgb(247 243 236 / 0.42);
-  --paper-ink: #f7f3ec; --paper-muted: rgb(247 243 236 / 0.82); --paper-line: rgb(247 243 236 / 0.24);
-  color: #f7f3ec;
-}
-.ph .kicker { color: #f0cf9f; }
-.ph .display { color: #f7f3ec; }
-.ph .lead { color: rgb(247 243 236 / 0.86); }
-/* Tarjetas claras encima de la foto: vuelven los colores de texto oscuros */
-.ph :is(.glass-card, .service-row, .work-list) {
-  --snow: #1f2933; --mist: #5b6670;
-  --line: rgb(31 41 51 / 0.12); --line-strong: rgb(31 41 51 / 0.22);
-  --paper-ink: #1f2933; --paper-muted: #5b6670; --paper-line: rgb(31 41 51 / 0.12);
-  color: #1f2933;
-  background: rgb(250 247 242 / 0.9);
-  border: 1px solid rgb(255 255 255 / 0.55);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 24px 48px -28px rgb(10 16 30 / 0.55);
-}
-.ph :is(.glass-card, .service-row, .work-list) .display { color: #1f2933; }
-.glass-pad { padding: clamp(1.25rem, 0.8rem + 1.5vw, 2rem); border-radius: 1.75rem; }
-.ph .service-row .tag { background: rgb(31 41 51 / 0.06); }
-/* Botones y píldoras que se rellenan: texto oscuro sobre fondo claro */
-.ph .btn-brass, .ph .btn-solid, .ph .filter-btn-on, .ph .rubro-pill-you { color: #1f2933; }
-.ph .btn-brass svg.nudge, .ph .btn-solid svg.nudge { background: #1f2933; color: #f7f3ec; }
-.ph :is(.glass-card, .service-row, .work-list) .btn-brass,
-.ph :is(.glass-card, .service-row, .work-list) .btn-solid { background: #1f2933; color: #f7f3ec; }
-.ph :is(.glass-card) .btn-brass svg.nudge { background: #f7f3ec; color: #1f2933; }
-.ph .step-highlight .step-num { color: #f7f3ec; background: #1f2933; border-color: #1f2933; }
-.ph .step-num { background: #fff; color: #1f2933; }
-.ph .photo { box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.6); }
-.ph a:not(.btn):not(.filter-btn) { text-decoration-color: currentColor; }
+/* ═══ Secciones minimalistas: fondo plano, sin sombras, líneas finas y mucho aire ═══ */
+main#main > section:not(.hero) { border-color: transparent; }
+main#main > .section:not(.on-paper) { background: var(--ink); }
+main#main > section.on-paper { background: color-mix(in oklab, var(--paper) 55%, var(--ink)); }
+.service-row { box-shadow: none; background: transparent; border-color: var(--line); }
+.glass-pad { padding: 0; }
+.work-list { background: transparent; border: 0; padding: 0; border-radius: 0; }
+.work-list .work-row:first-child { border-top: 1px solid var(--line); }
+.tag { background: transparent; border-color: var(--line); }
