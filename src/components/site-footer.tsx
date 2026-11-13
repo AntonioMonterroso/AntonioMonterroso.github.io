@@ -4,7 +4,7 @@ import { site } from "@/lib/site";
 
 export function SiteFooter() {
   return (
-    <footer className="site-footer-frame bg-[color-mix(in_oklab,var(--deep)_45%,var(--ink))]">
+    <footer className="border-t border-[var(--line)] bg-[var(--ink)]">
       <div className="shell grid gap-10 py-14 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_minmax(0,1fr)]">
         <div>
           <Logo />

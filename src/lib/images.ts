@@ -9,3 +9,4 @@ export const bocetoAcuarela: SiteImage = { src: basePath + "/images/boceto-acuar
 export const escritorioResponsive: SiteImage = { src: basePath + "/images/escritorio-responsive.webp", width: 1100, height: 852 };
 export const laptopEntrega: SiteImage = { src: basePath + "/images/laptop-entrega.webp", width: 800, height: 1200 };
 export const sistemasIsometrico: SiteImage = { src: basePath + "/images/sistemas-isometrico.webp", width: 1200, height: 700 };
+

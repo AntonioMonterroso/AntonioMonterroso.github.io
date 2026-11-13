@@ -83,7 +83,7 @@ export function Services() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-4 md:grid-cols-2">
+        <div className="mt-16">
           {services.map((s) => (
             <article key={s.n} className="service-row" data-reveal>
               <span className="service-num">{s.n}</span>
@@ -104,7 +104,7 @@ export function Services() {
           ))}
         </div>
 
-        <div className="mt-4 grid overflow-hidden rounded-[1.75rem] border border-[var(--line)] bg-[var(--deep)] md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
+        <div className="mt-6 grid overflow-hidden rounded-[1.5rem] border border-[var(--line)] bg-[var(--deep)] md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
           <div className="flex flex-col justify-center gap-5 p-[clamp(1.75rem,1rem+3vw,3.5rem)]">
             <p className="kicker"><T es="Y también" en="And also" /></p>
             <h3 className="display text-[length:var(--step-3)]">
