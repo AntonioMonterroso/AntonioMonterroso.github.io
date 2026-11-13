@@ -1883,3 +1883,87 @@ main#main > section.on-paper { background: color-mix(in oklab, var(--paper) 55%,
   .rubro-pill { min-height: 2.25rem; padding: 0 0.875rem; font-size: 0.875rem; }
   #trabajos .rubro-pill + .rubro-pill, #trabajos ul.flex { gap: 0.375rem; }
 }
+
+/* ═══ Movimiento creativo, sin fotos (2026-11-13) ═══ */
+
+/* 1 · Títulos: una palabra se subraya con un trazo a mano */
+.w-mark { position: relative; padding-bottom: 0.3em; margin-bottom: -0.3em; }
+.scribble {
+  position: absolute; left: -0.04em; right: -0.04em; bottom: 0.1em; width: calc(100% + 0.08em); height: 0.26em;
+  overflow: visible; pointer-events: none;
+}
+.scribble path {
+  fill: none; stroke: var(--brass); stroke-width: 3.2; stroke-linecap: round; vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1; stroke-dashoffset: 1;
+}
+html:not(.js) .scribble path, [data-visible] .scribble path { stroke-dashoffset: 0; }
+[data-reveal="lines"] .scribble path { transition: stroke-dashoffset 700ms var(--ease-out) 650ms; }
+
+/* 2 · Dibujitos de cada servicio */
+.art { width: 9.5rem; height: auto; flex: none; overflow: visible; }
+.art .art-frame { fill: none; stroke: var(--line-strong); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.art .art-soft { fill: var(--line-strong); }
+.art .art-line, .art .art-cell { fill: color-mix(in oklab, var(--snow) 22%, transparent); }
+.art .art-fill, .art .art-bar, .art .art-node { fill: var(--brass); }
+.art .art-node { fill: color-mix(in oklab, var(--brass) 22%, transparent); stroke: var(--brass); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.art .art-draw { fill: none; stroke: var(--brass); stroke-width: 1.5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; vector-effect: non-scaling-stroke; }
+.art .art-line, .art .art-bar, .art .art-pop, .art .art-cell, .art .art-node { transform-box: fill-box; }
+.art .art-line { transform-origin: left center; }
+.art .art-bar { transform-origin: center bottom; }
+.art .art-pop, .art .art-node { transform-origin: center; }
+html.js .service-row:not([data-visible]) .art-line { transform: scaleX(0); }
+html.js .service-row:not([data-visible]) .art-bar { transform: scaleY(0.08); }
+html.js .service-row:not([data-visible]) :is(.art-pop, .art-node, .art-cell) { opacity: 0; transform: scale(0.95); }
+html.js .service-row:not([data-visible]) .art-draw { stroke-dashoffset: 1; }
+html.js .service-row .art :is(.art-line, .art-bar, .art-pop, .art-node, .art-cell) {
+  transition: transform 600ms var(--ease-out), opacity 400ms var(--ease-out);
+  transition-delay: calc(250ms + var(--i, 0) * 70ms);
+}
+html.js .service-row .art .art-draw { transition: stroke-dashoffset 700ms var(--ease-out); transition-delay: calc(250ms + var(--i, 0) * 90ms); }
+/* Al pasar el mouse, las barras y celdas respiran un poco */
+@media (hover: hover) and (pointer: fine) {
+  .service-row[data-visible]:hover .art-bar { animation: art-breathe 1.6s var(--ease-out) infinite alternate; animation-delay: calc(var(--i, 0) * 90ms); }
+}
+@keyframes art-breathe { to { transform: scaleY(0.82); } }
+@media (max-width: 767px) { .art { width: 7.5rem; } }
+
+/* 3 · Franja que corre */
+.marquee {
+  overflow: hidden; padding-block: clamp(1rem, 0.6rem + 1.5vw, 1.75rem);
+  border-block: 1px solid var(--line); background: var(--ink); color: var(--snow);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track, .marquee-track > span { display: flex; width: max-content; }
+.marquee-group { display: flex; flex: none; animation: marquee 38s linear infinite; }
+.marquee-rev .marquee-group { animation-direction: reverse; }
+.marquee-word {
+  display: inline-flex; align-items: center; gap: clamp(1rem, 0.6rem + 1.5vw, 2rem); padding-right: clamp(1rem, 0.6rem + 1.5vw, 2rem);
+  font-family: var(--font-display), sans-serif; font-weight: 500; letter-spacing: -0.03em; line-height: 1; white-space: nowrap;
+  font-size: clamp(2rem, 1.2rem + 3.5vw, 4.5rem);
+}
+.marquee-word i { font-style: normal; font-size: 0.45em; color: var(--brass); }
+.marquee-outline { color: transparent; -webkit-text-stroke: 1.2px var(--snow); }
+@keyframes marquee { to { transform: translateX(-100%); } }
+@media (hover: hover) and (pointer: fine) { .marquee:hover .marquee-group { animation-play-state: paused; } }
+
+/* 4 · Pasos con línea que avanza y se encienden al llegar */
+.step:not(:last-child)::after {
+  content: ""; position: absolute; left: calc(1.5rem - 1px); top: 3rem; bottom: 0.25rem; width: 2px;
+  background: var(--brass); transform-origin: top; transform: scaleY(0);
+  animation: none; transition: transform 900ms var(--ease-out) 150ms;
+}
+.step[data-on]:not(:last-child)::after { transform: scaleY(1); }
+.step .step-num { transition: background-color 300ms var(--ease-out), color 300ms var(--ease-out), border-color 300ms var(--ease-out), transform 300ms var(--ease-out); }
+.step[data-on] .step-num { background: var(--brass); border-color: var(--brass); color: #f7f3ec; transform: scale(1.06); }
+.step h3 { transition: color 300ms var(--ease-out); }
+html.js .step:not([data-on]) h3 { color: color-mix(in oklab, currentColor 55%, transparent); }
+
+/* Menos movimiento: todo queda en su lugar, solo cambian colores */
+@media (prefers-reduced-motion: reduce) {
+  .scribble path { stroke-dashoffset: 0 !important; transition: none !important; }
+  .art * { transform: none !important; stroke-dashoffset: 0 !important; transition: opacity 300ms linear !important; animation: none !important; }
+  .marquee-group { animation: none; }
+  .step:not(:last-child)::after { transform: scaleY(1); transition: none; }
+  .step[data-on] .step-num { transform: none; }
+}

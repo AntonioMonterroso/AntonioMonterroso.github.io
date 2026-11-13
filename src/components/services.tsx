@@ -2,10 +2,12 @@ import Image from "next/image";
 import { T } from "@/components/t";
 import { Split } from "@/components/split";
 import { sistemasIsometrico } from "@/lib/images";
+import { ServiceArt } from "@/components/service-art";
 
 const services = [
   {
     n: "01",
+    art: "web" as const,
     title: { es: "Páginas web y landing pages", en: "Websites and landing pages" },
     body: {
       es: "Sitios rápidos que explican lo que haces y convierten visitas en mensajes. Se ven bien en el celular, cargan en segundos y Google los encuentra.",
@@ -20,6 +22,7 @@ const services = [
   },
   {
     n: "02",
+    art: "panel" as const,
     title: { es: "Paneles administrativos", en: "Admin panels" },
     body: {
       es: "Un solo lugar para ver ventas, clientes, pagos o citas, sin buscar en diez archivos. Cada persona entra con su usuario y ve lo que le toca.",
@@ -34,6 +37,7 @@ const services = [
   },
   {
     n: "03",
+    art: "excel" as const,
     title: { es: "Excel y VBA a la medida", en: "Custom Excel and VBA" },
     body: {
       es: "Si tu empresa vive en Excel, no te pedimos que lo dejes. Lo automatizamos: macros, formularios y reportes que se arman solos. Menos copiar y pegar, menos errores.",
@@ -48,6 +52,7 @@ const services = [
   },
   {
     n: "04",
+    art: "erp" as const,
     title: { es: "ERP completo", en: "Full ERP" },
     body: {
       es: "Inventario, ventas, compras, contabilidad y planillas conectados en un sistema. Tu propia instalación, tu propia base de datos y funciones nuevas cuando las necesites.",
@@ -70,8 +75,8 @@ export function Services() {
             <p className="kicker" data-reveal><T es="Qué hacemos" en="What we do" /></p>
             <h2 id="servicios-title" className="display mt-5 text-[length:var(--step-4)]" data-reveal="lines">
               <T
-                es={<Split text="Una página web tiene que verse bien. Y también trabajar." />}
-                en={<Split text="A website has to look good. And it has to work, too." />}
+                es={<Split text="Una página web tiene que verse bien. Y también trabajar." mark="bien" />}
+                en={<Split text="A website has to look good. And it has to work, too." mark="good" />}
               />
             </h2>
           </div>
@@ -86,7 +91,10 @@ export function Services() {
         <div className="mt-14 grid gap-4 md:grid-cols-2">
           {services.map((s) => (
             <article key={s.n} className="service-row" data-reveal>
-              <span className="service-num">{s.n}</span>
+              <div className="flex items-start justify-between gap-4">
+                <span className="service-num">{s.n}</span>
+                <ServiceArt kind={s.art} />
+              </div>
               <h3 className="display text-[length:var(--step-3)] !leading-[1.08]">
                 <T es={s.title.es} en={s.title.en} />
               </h3>

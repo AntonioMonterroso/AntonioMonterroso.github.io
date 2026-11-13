@@ -12,6 +12,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { WhatsAppFab } from "@/components/whatsapp-fab";
 import { RevealObserver } from "@/components/reveal-observer";
 import { Spotlight } from "@/components/spotlight";
+import { Marquee } from "@/components/marquee";
 
 /** La página completa; la portada (hero) se puede cambiar para comparar diseños. */
 export function Landing({ hero, dark = false }: { hero: ReactNode; dark?: boolean }) {
@@ -28,10 +29,12 @@ export function Landing({ hero, dark = false }: { hero: ReactNode; dark?: boolea
       <main id="main">
         {hero}
         <Services />
+        <Marquee />
         <PaletteDemo />
         <Process />
         <PricingSection />
         <Work />
+        <Marquee reverse />
         <Values />
         <Contact />
       </main>

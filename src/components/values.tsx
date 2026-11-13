@@ -49,7 +49,7 @@ export function Values() {
           <div>
             <p className="kicker" data-reveal><T es="El estudio" en="The studio" /></p>
             <h2 id="estudio-title" className="display mt-5 text-[length:var(--step-4)]" data-reveal="lines">
-              <T es={<Split text="Lo que no cambia de un proyecto a otro." />} en={<Split text="What stays the same on every project." />} />
+              <T es={<Split text="Lo que no cambia de un proyecto a otro." mark="cambia" />} en={<Split text="What stays the same on every project." mark="same" />} />
             </h2>
           </div>
           <div className="photo mt-10 aspect-[4/5] max-w-[26rem]" data-reveal style={{ ["--d" as string]: "80ms" }}>

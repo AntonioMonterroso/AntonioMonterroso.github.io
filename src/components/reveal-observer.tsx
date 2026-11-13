@@ -33,7 +33,23 @@ export function RevealObserver() {
       { rootMargin: "0px 0px -80px 0px", threshold: 0.1 },
     );
     els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    // Pasos del proceso: se encienden al pasar por el centro de la pantalla
+    const steps = document.querySelectorAll<HTMLElement>(".step");
+    const so = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          e.target.setAttribute("data-on", "");
+          so.unobserve(e.target);
+        }
+      },
+      { rootMargin: "-40% 0px -45% 0px" },
+    );
+    steps.forEach((el) => so.observe(el));
+    return () => {
+      io.disconnect();
+      so.disconnect();
+    };
   }, []);
   return null;
 }

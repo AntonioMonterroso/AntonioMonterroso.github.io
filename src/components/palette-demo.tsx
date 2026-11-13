@@ -9,7 +9,7 @@ export function PaletteDemo() {
         <div>
           <p className="kicker" data-reveal><T es="Pruébalo aquí mismo" en="Try it right here" /></p>
           <h2 id="demo-title" className="display mt-4 text-[length:var(--step-3)]" data-reveal="lines">
-            <T es={<Split text="Cambia los colores de esta página." />} en={<Split text="Change this page's colors." />} />
+            <T es={<Split text="Cambia los colores de esta página." mark="colores" />} en={<Split text="Change this page's colors." mark="colors" />} />
           </h2>
           <p className="lead mt-4 max-w-[38rem]" data-reveal style={{ ["--d" as string]: "150ms" }}>
             <T

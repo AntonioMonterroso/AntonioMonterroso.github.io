@@ -51,7 +51,7 @@ export function Process() {
           <div>
             <p className="kicker" data-reveal><T es="Cómo trabajamos" en="How we work" /></p>
             <h2 id="proceso-title" className="display mt-5 text-[length:var(--step-4)]" data-reveal="lines">
-              <T es={<Split text="Todo empieza con un boceto a mano." />} en={<Split text="Everything starts with a hand sketch." />} />
+              <T es={<Split text="Todo empieza con un boceto a mano." mark="mano" />} en={<Split text="Everything starts with a hand sketch." mark="sketch" />} />
             </h2>
             <p className="lead mt-6 max-w-[34rem]" data-reveal style={{ ["--d" as string]: "150ms" }}>
               <T

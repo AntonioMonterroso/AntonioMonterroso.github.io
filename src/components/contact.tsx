@@ -11,7 +11,7 @@ export function Contact() {
         <div>
           <p className="kicker" data-reveal><T es="Contacto" en="Contact" /></p>
           <h2 id="contacto-title" className="display mt-5 text-[length:var(--step-4)]" data-reveal="lines">
-            <T es={<Split text="Cuéntanos qué necesitas." />} en={<Split text="Tell us what you need." />} />
+            <T es={<Split text="Cuéntanos qué necesitas." mark="necesitas" />} en={<Split text="Tell us what you need." mark="need" />} />
           </h2>
           <p className="lead mt-6" data-reveal style={{ ["--d" as string]: "150ms" }}>
             <T
