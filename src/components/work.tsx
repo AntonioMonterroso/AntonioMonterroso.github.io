@@ -51,7 +51,7 @@ export function Work() {
           />
         </div>
 
-        <ul className="mt-8">
+        <ul className="work-list mt-6">
           {projects.map((p) => {
             const dim = cat !== "todos" && p.cat !== cat;
             return (
@@ -70,16 +70,13 @@ export function Work() {
           })}
         </ul>
 
-        <div className="mt-20 border-t border-[var(--line)] pt-10" data-reveal>
+        <div className="mt-16" data-reveal>
           <p className="kicker">{t("Rubros que vienen", "Industries up next")}</p>
-          <p className="display mt-6 max-w-[64rem] text-[length:var(--step-3)] !leading-[1.25] text-[var(--mist)]">
+          <ul className="mt-6 flex max-w-[64rem] flex-wrap gap-2.5">
             {future[lang].map((f, i) => (
-              <span key={f}>
-                <span className={i === future[lang].length - 1 ? "text-[var(--brass)]" : undefined}>({f})</span>
-                {i < future[lang].length - 1 ? " " : ""}
-              </span>
+              <li key={f} className={`rubro-pill ${i === future[lang].length - 1 ? "rubro-pill-you" : ""}`}>{f}</li>
             ))}
-          </p>
+          </ul>
         </div>
       </div>
     </section>

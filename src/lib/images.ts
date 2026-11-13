@@ -10,3 +10,11 @@ export const escritorioResponsive: SiteImage = { src: basePath + "/images/escrit
 export const laptopEntrega: SiteImage = { src: basePath + "/images/laptop-entrega.webp", width: 800, height: 1200 };
 export const sistemasIsometrico: SiteImage = { src: basePath + "/images/sistemas-isometrico.webp", width: 1200, height: 700 };
 
+// Portada: muelle del Lago de Atitlán (Unsplash, licencia libre). Escritorio, celular (recorte vertical) y miniatura redonda.
+export const atitlanMuelle = {
+  src: basePath + "/images/atitlan-muelle.webp",
+  mobile: basePath + "/images/atitlan-muelle-m.webp",
+  thumb: basePath + "/images/atitlan-muelle-sm.webp",
+  width: 2400,
+  height: 1800,
+};

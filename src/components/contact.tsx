@@ -55,7 +55,7 @@ export function Contact() {
             ) : null}
           </ul>
         </div>
-        <div className="rounded-[1.5rem] border border-[var(--line)] bg-[var(--deep)] p-[clamp(1.25rem,0.8rem+2vw,2.5rem)]" data-reveal style={{ ["--d" as string]: "80ms" }}>
+        <div className="rounded-[1.75rem] border border-[var(--line)] bg-[var(--deep)] p-[clamp(1.25rem,0.8rem+2vw,2.5rem)]" data-reveal style={{ ["--d" as string]: "80ms" }}>
           <ContactForm />
         </div>
       </div>
