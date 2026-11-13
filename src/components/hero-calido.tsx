@@ -4,7 +4,6 @@ import { T } from "@/components/t";
 import { CodeWindow } from "@/components/code-window";
 import { ProjectPicker } from "@/components/project-picker";
 import { PricingLink } from "@/components/pricing-link";
-import { FeaturedProject } from "@/components/featured-project";
 import { atitlanMuelle } from "@/lib/images";
 
 const rail = [
@@ -84,7 +83,6 @@ export function HeroCalido() {
 
         {/* Tarjetas de abajo, como la referencia */}
         <div className="hr-cards hero-fade" style={{ ["--d" as string]: "520ms" }}>
-          <FeaturedProject />
           <ul className="hr-card hr-what" aria-label="Lo que hacemos / What we do">
             <li><MonitorSmartphone className="size-6" aria-hidden="true" /><b><T es="Páginas web" en="Websites" /></b><span><T es="Que venden" en="That sell" /></span></li>
             <li><LayoutDashboard className="size-6" aria-hidden="true" /><b><T es="Paneles" en="Panels" /></b><span><T es="Todo en un lugar" en="All in one place" /></span></li>
