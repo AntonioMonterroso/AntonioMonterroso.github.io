@@ -1403,19 +1403,16 @@ body { background: transparent; position: relative; }
   content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
   border: 1.5px solid color-mix(in oklab, var(--snow) 22%, transparent);
 }
-.hc-photo { object-position: 62% 55%; filter: saturate(0.9) sepia(0.28) contrast(1.06); }
 .hc-veil {
-  background:
-    linear-gradient(180deg, color-mix(in oklab, var(--ink) 92%, transparent) 0%, color-mix(in oklab, var(--ink) 55%, transparent) 42%, color-mix(in oklab, var(--ink) 10%, transparent) 70%, color-mix(in oklab, var(--ink) 55%, transparent) 100%);
+  /* el mismo velo de la portada anterior: deja leer el texto sobre los volcanes */
+  background: linear-gradient(180deg, color-mix(in oklab, var(--ink) 35%, transparent) 0%, transparent 45%);
 }
 @media (min-width: 1024px) {
   .hc-frame { padding-left: 7.5rem; padding-right: 2rem; }
-  .hc-veil {
-    background:
-      linear-gradient(95deg, color-mix(in oklab, var(--ink) 90%, transparent) 0%, color-mix(in oklab, var(--ink) 62%, transparent) 32%, transparent 58%),
-      linear-gradient(180deg, color-mix(in oklab, var(--ink) 55%, transparent) 0%, transparent 18%),
-      linear-gradient(0deg, color-mix(in oklab, var(--ink) 40%, transparent) 0%, transparent 30%);
-  }
+  .hc-veil { background: linear-gradient(100deg, color-mix(in oklab, var(--ink) 62%, transparent) 0%, transparent 62%); }
+}
+@media (max-width: 1023px) {
+  .hc-frame { background: linear-gradient(180deg, var(--navy-2) 0%, var(--navy-2) 40%, var(--navy) 100%); }
 }
 .hc-copy { align-self: center; max-width: 46rem; }
 .hc-kicker {
@@ -1651,7 +1648,6 @@ main#main > section[aria-labelledby="demo-title"] { border-block: 1px solid var(
 
 /* Fotos: esquinas grandes y el mismo tono cálido */
 .photo { border-radius: clamp(1.25rem, 2vw, 1.75rem); }
-.photo img { filter: sepia(0.14) saturate(0.92); }
 
 /* Proceso: números en círculo oscuro */
 .step-num { background: var(--deep); }

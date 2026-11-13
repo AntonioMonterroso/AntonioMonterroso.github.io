@@ -5,8 +5,6 @@ import { usePrefs, useT } from "@/components/prefs";
 import { Split } from "@/components/split";
 import { projects } from "@/lib/site";
 import { Segmented } from "@/components/segmented";
-import Image from "next/image";
-import { escritorioDiseno } from "@/lib/images";
 
 type Cat = "todos" | "web" | "panel" | "erp" | "esp";
 
@@ -31,7 +29,6 @@ export function Work() {
   return (
     <section id="trabajos" className="section bg-[var(--deep)]" aria-labelledby="trabajos-title">
       <div className="shell">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end">
         <div className="max-w-[52rem]">
           <p className="kicker" data-reveal>{t("Trabajos", "Work")}</p>
           <h2 id="trabajos-title" className="display mt-5 text-[length:var(--step-4)]" data-reveal="lines">
@@ -40,16 +37,6 @@ export function Work() {
           <p className="mt-4 text-[length:var(--step--1)] text-[var(--mist)]" data-reveal style={{ ["--d" as string]: "150ms" }}>
             {t("Con permiso de nuestros clientes", "Shared with our clients' permission")}
           </p>
-        </div>
-        <div className="photo aspect-[7/5]" data-reveal style={{ ["--d" as string]: "80ms" }}>
-          <Image
-            src={escritorioDiseno.src}
-            width={escritorioDiseno.width}
-            height={escritorioDiseno.height}
-            alt="Escritorio con una laptop que muestra un diseño, una lámpara encendida y una taza"
-            sizes="(min-width: 1024px) 40vw, 100vw"
-          />
-        </div>
         </div>
 
         <div className="mt-12" data-reveal>

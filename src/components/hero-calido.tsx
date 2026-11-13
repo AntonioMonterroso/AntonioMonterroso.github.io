@@ -3,7 +3,7 @@ import { T } from "@/components/t";
 import { CodeWindow } from "@/components/code-window";
 import { ProjectPicker } from "@/components/project-picker";
 import { PricingLink } from "@/components/pricing-link";
-import { volcanAgua } from "@/lib/images";
+import { Volcanoes } from "@/components/volcanoes";
 
 const rail = [
   { href: "#inicio", icon: Home, es: "Inicio", en: "Home" },
@@ -13,15 +13,12 @@ const rail = [
   { href: "#contacto", icon: Mail, es: "Contacto", en: "Contact" },
 ];
 
-/** Portada «cálida»: foto del Volcán de Agua, letra fina y tarjetas claras abajo. */
+/** Portada: los volcanes dibujados de siempre con la estructura de la referencia (barra lateral, letra fina y tarjetas abajo). */
 export function HeroCalido() {
   return (
     <section id="inicio" className="hero hc" aria-labelledby="hero-title">
       <div className="hc-frame">
-        <picture>
-          <source media="(max-width: 767px)" srcSet={volcanAgua.mobile} />
-          <img src={volcanAgua.src} width={volcanAgua.width} height={volcanAgua.height} alt="" fetchPriority="high" className="hc-photo" />
-        </picture>
+        <Volcanoes />
         <div aria-hidden="true" className="hc-veil" />
 
         {/* Barra lateral de accesos (solo en pantallas grandes) */}

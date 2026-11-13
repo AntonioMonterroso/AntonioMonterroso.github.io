@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { T } from "@/components/t";
 import { Split } from "@/components/split";
-import { manosLaptop } from "@/lib/images";
+import { sistemasIsometrico } from "@/lib/images";
 
 const services = [
   {
@@ -117,12 +117,12 @@ export function Services() {
               />
             </p>
           </div>
-          <div className="photo !rounded-none min-h-72">
+          <div className="photo photo-tint !rounded-none min-h-64">
             <Image
-              src={manosLaptop.src}
-              width={manosLaptop.width}
-              height={manosLaptop.height}
-              alt="Manos escribiendo en una laptop junto a una ventana con luz de la tarde"
+              src={sistemasIsometrico.src}
+              width={sistemasIsometrico.width}
+              height={sistemasIsometrico.height}
+              alt="Ilustración de una computadora con código, un servidor y los lenguajes HTML, CSS, JavaScript y PHP"
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="absolute inset-0"
             />

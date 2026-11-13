@@ -13,8 +13,8 @@ export function PaletteDemo() {
           </h2>
           <p className="lead mt-4 max-w-[38rem]" data-reveal style={{ ["--d" as string]: "150ms" }}>
             <T
-              es="Fondos, botones, textos y tarjetas. Con tu sistema pasa lo mismo: se viste con tu marca desde el primer boceto."
-              en="Backgrounds, buttons, text and cards. Your system works the same way: it wears your brand from the first sketch."
+              es="Fondos, botones, textos y hasta los volcanes. Con tu sistema pasa lo mismo: se viste con tu marca desde el primer boceto."
+              en="Backgrounds, buttons, text, even the volcanoes. Your system works the same way: it wears your brand from the first sketch."
             />
           </p>
         </div>
