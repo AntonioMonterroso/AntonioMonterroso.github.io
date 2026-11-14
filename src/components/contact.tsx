@@ -1,4 +1,4 @@
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, Clock, Mail, MapPin, MessageCircle } from "lucide-react";
 import { T } from "@/components/t";
 import { Split } from "@/components/split";
 import { ContactForm } from "@/components/contact-form";
@@ -19,43 +19,51 @@ export function Contact() {
               en="We'll reply with specific questions and, when it's time, a written quote."
             />
           </p>
-          <ul className="mt-10 grid gap-5">
-            <li className="flex gap-4">
-              <Mail className="mt-1 size-5 shrink-0 text-[var(--brass)]" aria-hidden="true" />
-              <div>
-                <p className="text-[length:var(--step--1)] text-[var(--mist)]"><T es="Correo" en="Email" /></p>
-                <a href={`mailto:${site.email}`} className="underline-offset-4 hover:underline">{site.email}</a>
-              </div>
+          <ul className="ct-list mt-10">
+            <li>
+              <a className="ct-row" href={`mailto:${site.email}`}>
+                <span className="ct-ico"><Mail className="size-5" aria-hidden="true" /></span>
+                <span className="ct-txt">
+                  <small><T es="Correo" en="Email" /></small>
+                  <b className="break-all">{site.email}</b>
+                </span>
+                <ArrowUpRight className="ct-arrow size-5" aria-hidden="true" />
+              </a>
             </li>
-            <li className="flex gap-4">
-              <Phone className="mt-1 size-5 shrink-0 text-[var(--brass)]" aria-hidden="true" />
-              <div>
-                <p className="text-[length:var(--step--1)] text-[var(--mist)]"><T es="WhatsApp" en="WhatsApp" /></p>
-                <a href={whatsappLink()} target="_blank" rel="noreferrer" className="underline-offset-4 hover:underline">
-                  <T es="Escríbenos por WhatsApp" en="Message us on WhatsApp" />
-                </a>
-              </div>
+            <li>
+              <a className="ct-row" href={whatsappLink()} target="_blank" rel="noreferrer">
+                <span className="ct-ico"><MessageCircle className="size-5" aria-hidden="true" /></span>
+                <span className="ct-txt">
+                  <small>WhatsApp</small>
+                  <b><T es="Escríbenos por WhatsApp" en="Message us on WhatsApp" /></b>
+                </span>
+                <ArrowUpRight className="ct-arrow size-5" aria-hidden="true" />
+              </a>
             </li>
-            <li className="flex gap-4">
-              <MapPin className="mt-1 size-5 shrink-0 text-[var(--brass)]" aria-hidden="true" />
-              <div>
-                <p className="text-[length:var(--step--1)] text-[var(--mist)]"><T es="Dónde" en="Where" /></p>
-                <p><T es={site.location.es} en={site.location.en} /></p>
+            <li>
+              <div className="ct-row">
+                <span className="ct-ico"><MapPin className="size-5" aria-hidden="true" /></span>
+                <span className="ct-txt">
+                  <small><T es="Dónde" en="Where" /></small>
+                  <b><T es={site.location.es} en={site.location.en} /></b>
+                </span>
               </div>
             </li>
             {/* El horario solo se muestra cuando está definido en site.ts */}
             {site.hours ? (
-              <li className="flex gap-4">
-                <Clock className="mt-1 size-5 shrink-0 text-[var(--brass)]" aria-hidden="true" />
-                <div>
-                  <p className="text-[length:var(--step--1)] text-[var(--mist)]"><T es="Horario" en="Hours" /></p>
-                  <p><T es={site.hours.es} en={site.hours.en} /></p>
+              <li>
+                <div className="ct-row">
+                  <span className="ct-ico"><Clock className="size-5" aria-hidden="true" /></span>
+                  <span className="ct-txt">
+                    <small><T es="Horario" en="Hours" /></small>
+                    <b><T es={site.hours.es} en={site.hours.en} /></b>
+                  </span>
                 </div>
               </li>
             ) : null}
           </ul>
         </div>
-        <div className="glass-card rounded-[1.75rem] border border-[var(--line)] bg-[var(--deep)] p-[clamp(1.25rem,0.8rem+2vw,2.5rem)]" data-reveal style={{ ["--d" as string]: "80ms" }}>
+        <div className="ct-card glass-card rounded-[1.75rem] border border-[var(--line)] bg-[var(--deep)] p-[clamp(1.25rem,0.8rem+2vw,2.5rem)]" data-reveal style={{ ["--d" as string]: "80ms" }}>
           <ContactForm />
         </div>
       </div>

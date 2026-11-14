@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { Check, Mail, MessageCircle } from "lucide-react";
+import { Check, CheckCheck, Mail, MessageCircle } from "lucide-react";
 import { projectTypes, site, whatsappLink } from "@/lib/site";
 import { usePrefs, useT } from "@/components/prefs";
 
@@ -15,6 +15,21 @@ export function ContactForm() {
   const [status, setStatus] = useState<Status>(null);
   const [invalid, setInvalid] = useState<{ name?: boolean; message?: boolean }>({});
   const ringRef = useRef<HTMLSpanElement>(null);
+  // Mensaje en vivo: lo que escriben se va armando en una burbuja
+  const [live, setLive] = useState({ name: "", message: "" });
+  const [typing, setTyping] = useState(false);
+  const typingTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  // Avioncito: cada envío lo hace volar una vez
+  const [fly, setFly] = useState(0);
+  const onType = (field: "name" | "message") => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const v = e.target.value;
+    setLive((l) => ({ ...l, [field]: v }));
+    setTyping(true);
+    clearTimeout(typingTimer.current);
+    typingTimer.current = setTimeout(() => setTyping(false), 900);
+    clear(field)();
+  };
+  useEffect(() => () => clearTimeout(typingTimer.current), []);
 
   // Al llegar desde un botón "Cotizar", el campo de tipo de proyecto se ilumina un momento:
   // así se nota que ya viene elegido. Espera a que termine el desplazamiento para que se vea.
@@ -77,6 +92,7 @@ export function ContactForm() {
     const msg = compose(e.currentTarget);
     if (!msg) return;
     const subject = t(`Cotización — ${msg.name}`, `Quote request — ${msg.name}`);
+    setFly((n) => n + 1);
     window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(msg.body)}`;
     setStatus({
       kind: "sent",
@@ -92,6 +108,7 @@ export function ContactForm() {
     if (!form) return;
     const msg = compose(form);
     if (!msg) return;
+    setFly((n) => n + 1);
     window.open(whatsappLink(msg.body), "_blank", "noopener");
     setStatus({
       kind: "sent",
@@ -116,7 +133,7 @@ export function ContactForm() {
           className="field-input"
           aria-invalid={invalid.name || undefined}
           aria-describedby={invalid.name ? "form-status" : undefined}
-          onChange={clear("name")}
+          onChange={onType("name")}
         />
       </div>
       <div className="field">
@@ -154,7 +171,7 @@ export function ContactForm() {
           id="message"
           name="message"
           required
-          rows={5}
+          rows={4}
           className="field-input resize-y"
           aria-invalid={invalid.message || undefined}
           aria-describedby={invalid.message ? "form-status" : undefined}
@@ -162,9 +179,23 @@ export function ContactForm() {
             "Tengo una tienda y llevo el inventario en Excel. Quiero…",
             "I run a shop and track inventory in Excel. I'd like…",
           )}
-          onChange={clear("message")}
+          onChange={onType("message")}
         />
       </div>
+      {(live.name.trim() || live.message.trim()) && (
+        <div className="ct-live sm:col-span-2" aria-hidden="true">
+          <p className="ct-live-l">{t("Así nos llega tu mensaje", "This is how your message reaches us")}</p>
+          <div className="ct-bubble">
+            <p>
+              {t("Hola, soy", "Hi, I'm")} <b>{live.name.trim() || "…"}</b>.{" "}
+              {t("Necesito:", "I need:")} <b>{(() => { const ty = projectTypes.find((p) => p.id === projectType); return ty ? t(ty.es, ty.en).toLowerCase() : ""; })()}</b>.
+            </p>
+            {live.message.trim() && <p className="ct-bubble-msg">{live.message.trim()}</p>}
+            <span className="ct-bubble-meta">{t("ahora", "now")} <CheckCheck className="size-3.5" /></span>
+          </div>
+          <span className={`ct-typing ${typing ? "on" : ""}`}><i /><i /><i /></span>
+        </div>
+      )}
       <div id="form-status" role={status?.kind === "error" ? "alert" : "status"} className="sm:col-span-2 empty:-mt-5">
         {status && (
           <p key={status.text} className={`form-msg ${status.kind === "sent" ? "form-msg-sent" : ""}`}>
@@ -173,7 +204,13 @@ export function ContactForm() {
           </p>
         )}
       </div>
-      <div className="flex flex-wrap gap-3 sm:col-span-2">
+      <div className="ct-actions relative flex flex-wrap gap-3 sm:col-span-2">
+        {fly > 0 && (
+          <svg key={fly} className="ct-plane" viewBox="0 0 48 48" aria-hidden="true">
+            <path className="ct-plane-body" d="M4 22 44 6 34 42 24 28Z" />
+            <path className="ct-plane-fold" d="M44 6 24 28 22 40 18 30" />
+          </svg>
+        )}
         <button type="submit" className="btn btn-solid">
           <Mail className="size-4" aria-hidden="true" />
           {t("Enviar por correo", "Send by email")}

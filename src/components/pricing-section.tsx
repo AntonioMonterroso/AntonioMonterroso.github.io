@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowRight, Check, MessageCircle } from "lucide-react";
 import { T } from "@/components/t";
+import { Split } from "@/components/split";
+import { CountUp } from "@/components/count-up";
 import { useT } from "@/components/prefs";
 import { whatsappLink } from "@/lib/site";
 import {
@@ -32,6 +34,24 @@ export function PricingSection() {
   const [exIdx, setExIdx] = useState(0);
   const [catF, setCatF] = useState<string | null>(null); // rubro elegido (null = aún no)
   const [modes, setModes] = useState<Record<string, PayMode>>({});
+  // fondo de la pestaña elegida que se desliza
+  const tabsRef = useRef<HTMLDivElement>(null);
+  const [clip, setClip] = useState<string | undefined>(undefined);
+  useEffect(() => {
+    const box = tabsRef.current;
+    if (!box) return;
+    const place = () => {
+      const b = box.querySelector<HTMLElement>(`[data-tab="${tab}"]`);
+      if (!b) return;
+      const W = box.clientWidth, H = box.clientHeight;
+      const l = b.offsetLeft, top = b.offsetTop;
+      setClip(`inset(${top}px ${W - l - b.offsetWidth}px ${H - top - b.offsetHeight}px ${l}px round 999px)`);
+    };
+    const raf = requestAnimationFrame(place);
+    const ro = new ResizeObserver(place);
+    ro.observe(box);
+    return () => { cancelAnimationFrame(raf); ro.disconnect(); };
+  }, [tab]);
 
   useEffect(() => {
     let alive = true;
@@ -81,8 +101,8 @@ export function PricingSection() {
     <section id="precios" className="section" aria-labelledby="precios-title">
       <div className="shell">
         <p className="kicker" data-reveal><T es="Precios y propuestas" en="Pricing & proposals" /></p>
-        <h2 id="precios-title" className="display mt-5 max-w-[22ch] text-[length:var(--step-4)]" data-reveal>
-          <T es="Elige con calma. Te proponemos lo que te convenga." en="Take your time. We'll propose what suits you." />
+        <h2 id="precios-title" className="display mt-5 max-w-[22ch] text-[length:var(--step-4)]" data-reveal="lines">
+          <T es={<Split text="Elige con calma. Te proponemos lo que te convenga." mark="calma" />} en={<Split text="Take your time. We'll propose what suits you." mark="time" />} />
         </h2>
         <p className="lead mt-5 max-w-[40rem]" data-reveal style={{ ["--d" as string]: "100ms" }}>
           <T
@@ -91,16 +111,21 @@ export function PricingSection() {
           />
         </p>
 
-        <div className="px-tabs" role="tablist" aria-label={t("Precios y propuestas", "Pricing and proposals")}>
+        <div ref={tabsRef} className={`px-tabs ${clip ? "has-on" : ""}`} role="tablist" aria-label={t("Precios y propuestas", "Pricing and proposals")}>
           {tabs.map((x) => (
-            <button key={x.id} type="button" role="tab" aria-selected={tab === x.id} className={`px-tab ${tab === x.id ? "on" : ""}`} onClick={() => setTab(x.id)}>
+            <button key={x.id} type="button" role="tab" data-tab={x.id} aria-selected={tab === x.id} className={`px-tab ${tab === x.id ? "on" : ""}`} onClick={() => setTab(x.id)}>
               <T es={x.es} en={x.en} />
             </button>
           ))}
+          {/* Copia de las pestañas en «activo»: se recorta hasta la elegida y el recorte se desliza */}
+          <div className="px-tabs-on" aria-hidden="true" style={{ clipPath: clip }}>
+            {tabs.map((x) => <span key={x.id} className="px-tab"><T es={x.es} en={x.en} /></span>)}
+          </div>
         </div>
 
         {/* ───────── Mi propuesta ───────── */}
         {tab === "propuesta" && (
+          <div className="px-propwrap">
           <div id="propuesta-guiada" className="px-prop" role="tabpanel">
             <ol className="px-dots" aria-label={t(`Paso ${step} de 3`, `Step ${step} of 3`)}>{[1, 2, 3].map((n) => <li key={n} className={n <= step ? "on" : ""} />)}</ol>
 
@@ -142,7 +167,7 @@ export function PricingSection() {
                           {payOptions(rec).length > 1 && (
                             <div className="px-modes" role="radiogroup">{payOptions(rec).map((o) => { const cur = (mode ?? payOptions(rec)[0].mode) === o.mode; return <button key={o.mode} type="button" role="radio" aria-checked={cur} className={`px-mode ${cur ? "on" : ""}`} onClick={() => setMode(o.mode)}>{o.mode === "once" ? t("Pago único", "One payment") : t("Mensualidad", "Monthly")}</button>; })}</div>
                           )}
-                          <dl>{lines.map((l) => <div key={l.id}><dt>{l.label.replace(/ · .*/, "")} <small>{PERIOD_LABEL[l.period].es}</small></dt><dd>{money(l.unit * mul)}</dd></div>)}</dl>
+                          <dl>{lines.map((l) => <div key={l.id}><dt>{l.label.replace(/ · .*/, "")} <small>{PERIOD_LABEL[l.period].es}</small></dt><dd><CountUp value={l.unit * mul} /></dd></div>)}</dl>
                           <label className="px-check"><input type="checkbox" checked={taxes} onChange={(e) => setTaxes(e.target.checked)} /> <T es="Con impuestos (si necesitas factura)" en="With taxes (if you need an invoice)" /></label>
                           <p className="px-fine">{sum.once > 0 && <>{money(sum.once)} <T es="para empezar" en="to start" /></>}{sum.once > 0 && sum.month > 0 && " · "}{sum.month > 0 && <>{money(sum.month)} <T es="al mes" en="per month" /></>}. <T es="Puedes empezar cuando estés listo y ajustar lo que necesites." en="Start whenever you're ready and adjust whatever you need." /></p>
                         </>
@@ -158,6 +183,46 @@ export function PricingSection() {
                 </div>
               </div>
             )}
+          </div>
+
+          {/* Hojita de propuesta que se llena sola mientras eligen (solo en pantallas anchas) */}
+          <aside className="px-ticket" aria-label={t("Así va tu propuesta", "Your proposal so far")}>
+            <div className="px-ticket-head">
+              <span className="px-l"><T es="Propuesta" en="Proposal" /></span>
+              <span key={step === 3 ? "ok" : "dr"} className={`px-stamp ${step === 3 ? "ok" : ""}`}>{step === 3 ? <T es="Lista" en="Ready" /> : <T es="Borrador" en="Draft" />}</span>
+            </div>
+            <p className="px-ticket-for">
+              <T es="Para" en="For" />{" "}
+              <b key={name.trim() || "-"}>{name.trim() || t("tu negocio", "your business")}</b>
+            </p>
+            <dl className="px-ticket-rows">
+              <div>
+                <dt><T es="Negocio" en="Business" /></dt>
+                <dd key={biz || "-"} className={biz ? "" : "px-blank"}>{biz || t("por elegir", "to pick")}</dd>
+              </div>
+              <div>
+                <dt><T es="Quiero" en="I want" /></dt>
+                <dd>
+                  {goals.length ? (
+                    <ul>{GOALS.filter((g) => goals.includes(g.id)).map((g) => <li key={g.id}><Check className="size-3.5" aria-hidden="true" /><T es={g.es} en={g.en} /></li>)}</ul>
+                  ) : <span className="px-blank">{t("por elegir", "to pick")}</span>}
+                </dd>
+              </div>
+              <div>
+                <dt><T es="Te propongo" en="I suggest" /></dt>
+                <dd key={rec && (goals.length || forced || step === 3) ? rec.id : "-"} className={rec && (goals.length || forced || step === 3) ? "px-ticket-pkg" : "px-blank"}>
+                  {rec && (goals.length || forced || step === 3) ? rec.name : t("cuando elijas", "once you pick")}
+                </dd>
+              </div>
+            </dl>
+            {rec && rec.kind === "closed" && rec.show_price !== false && (goals.length || forced || step === 3) ? (
+              <p className="px-ticket-total">
+                {sum.once > 0 && <span><b><CountUp value={sum.once} /></b> <T es="para empezar" en="to start" /></span>}
+                {sum.month > 0 && <span><b><CountUp value={sum.month} /></b> <T es="al mes" en="per month" /></span>}
+              </p>
+            ) : null}
+            <svg className="px-ticket-line" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8c30-5 60-6 98-4s70 3 98-1" /></svg>
+          </aside>
           </div>
         )}
 
@@ -227,8 +292,8 @@ export function PricingSection() {
                         <div className="px-pricebox">
                           {opts.length > 1 && <div className="px-modes" role="radiogroup">{opts.map((o) => <button key={o.mode} type="button" role="radio" aria-checked={cur.mode === o.mode} className={`px-mode ${cur.mode === o.mode ? "on" : ""}`} onClick={() => setModes((m) => ({ ...m, [p.id]: o.mode }))}>{o.mode === "once" ? t("Pago único", "One payment") : t("Mensualidad", "Monthly")}</button>)}</div>}
                           {cur.mode === "once"
-                            ? <p className="px-price"><b>{money(cur.once * mul)}</b> <small><T es="pago único" en="one payment" /></small></p>
-                            : <><p className="px-price"><b>{money(cur.monthly * mul)}</b> <small><T es="al mes" en="per month" /></small></p>{cur.setup > 0 && <p className="px-fine"><T es={`+ ${money(cur.setup * mul)} de activación, una sola vez`} en={`+ ${money(cur.setup * mul)} setup, one time`} /></p>}</>}
+                            ? <p className="px-price"><b><CountUp value={cur.once * mul} /></b> <small><T es="pago único" en="one payment" /></small></p>
+                            : <><p className="px-price"><b><CountUp value={cur.monthly * mul} /></b> <small><T es="al mes" en="per month" /></small></p>{cur.setup > 0 && <p className="px-fine"><T es={`+ ${money(cur.setup * mul)} de activación, una sola vez`} en={`+ ${money(cur.setup * mul)} setup, one time`} /></p>}</>}
                         </div>
                       ) : <p className="px-fine"><T es="El precio depende de tu caso. Te preparamos una propuesta." en="The price depends on your case. We'll prepare a proposal." /></p>}
                       <ul className="px-ticks">{yes.slice(0, 5).map((f, j) => <li key={j}><Check className="size-4" aria-hidden="true" />{f.text}</li>)}</ul>
